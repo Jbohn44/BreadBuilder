@@ -12,7 +12,7 @@ namespace BreadBuilder.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Welcome");
         }
 
         public IActionResult About()

@@ -1,4 +1,4 @@
-﻿@model BreadBuilder.Models.Bread
+﻿@model BreadBuilder.ViewModels.AddBreadViewModel
 
 @{
     ViewData["Title"] = "Add";
@@ -18,7 +18,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Build" class="btn btn-default" />
             </div>
         </form>
     </div>

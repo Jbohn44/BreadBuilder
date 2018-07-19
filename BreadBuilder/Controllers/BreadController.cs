@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BreadBuilder.Models;
+using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BreadBuilder.Controllers
@@ -18,7 +19,8 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
+            return View(addBreadViewModel);
         }
     }
 }

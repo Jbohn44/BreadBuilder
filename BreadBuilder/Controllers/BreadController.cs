@@ -22,5 +22,24 @@ namespace BreadBuilder.Controllers
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
             return View(addBreadViewModel);
         }
+
+        [HttpPost]
+        public IActionResult Add(AddBreadViewModel addBreadViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Bread newBread = new Bread
+                {
+                    Name = addBreadViewModel.Name
+                };
+
+                BreadData.Add(newBread);
+
+                return Redirect("/Bread");
+            }
+
+            return View(addBreadViewModel);
+
+        }  
     }
 }

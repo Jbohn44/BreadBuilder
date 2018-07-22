@@ -12,7 +12,7 @@ namespace BreadBuilder.Controllers
     {
         public IActionResult Index()
         {
-            IList<Bread> breads = new List<Bread>();
+            List<Bread> breads = BreadData.GetAll();
 
             return View(breads);
         }

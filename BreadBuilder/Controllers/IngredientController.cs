@@ -17,11 +17,14 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Add()
         {
-            AddIngredientViewModel addIngredientViewModel = new AddIngredientViewModel;
+            AddIngredientViewModel addIngredientViewModel = new AddIngredientViewModel();
 
             return View(addIngredientViewModel);
         }
+        
+        
 
+        [HttpPost]
         public IActionResult Add(AddIngredientViewModel addIngredientViewModel)
         {
             if (ModelState.IsValid)
@@ -33,6 +36,8 @@ namespace BreadBuilder.Controllers
                 };
 
                 IngredientData.Add(newIngredient);
+
+                addIngredientViewModel.ingredients.Add(newIngredient);
 
                 return Redirect("/Ingredient/Add");
 

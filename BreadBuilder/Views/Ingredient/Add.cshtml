@@ -1,13 +1,27 @@
-﻿@model BreadBuilder.Models.Ingredient
+﻿@model BreadBuilder.ViewModels.AddIngredientViewModel;
 
 @{
     ViewData["Title"] = "Add";
 }
 
-<h2>Add</h2>
 
-<h4>Ingredient</h4>
+
+<h2>Add Some Ingredients</h2>
 <hr />
+
+@if (Model.ingredients.Count == 0)
+{
+    <p>no ingredients saved</p>
+
+}
+
+@foreach(var item in Model.ingredients)
+{
+    <li>
+        <ul>@item.Name</ul>
+    </li>
+
+}
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Add">

@@ -37,9 +37,16 @@ namespace BreadBuilder.Controllers
 
                 IngredientData.Add(newIngredient);
 
-                addIngredientViewModel.ingredients.Add(newIngredient);
+                //creates a list from the Ingredient Data page
+                List<Ingredient> ingredientList = IngredientData.GetAll();
 
-                return Redirect("/Ingredient/Add");
+                //loops through that list and adds the items to the ingredient list in the ViewModel
+                foreach(var item in ingredientList)
+                {
+                    addIngredientViewModel.ingredients.Add(item);
+                }
+
+                return View(addIngredientViewModel);
 
 
 

@@ -12,6 +12,14 @@ namespace BreadBuilder.ViewModels
         [Display(Name = "Bread Name")]
         public string Name { get; set; }
 
+        [Required]
+        [Display(Name = "Instructions")]
+        public string Instructions { get; set; }
+
+
+
+        public AddBreadViewModel() { }
+    
 
     }
 }

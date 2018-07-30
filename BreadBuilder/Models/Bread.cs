@@ -9,6 +9,7 @@ namespace BreadBuilder.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Instructions { get; set; }
 
         //public IList<Ingredient> ingredients { get; set; }
 

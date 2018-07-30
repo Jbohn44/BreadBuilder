@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BreadBuilder.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace BreadBuilder.ViewModels
         [Required]
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
+
+        public IList<Ingredient> breadIngredients { get; set; }
 
 
 

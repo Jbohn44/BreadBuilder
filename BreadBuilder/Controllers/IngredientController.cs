@@ -12,7 +12,9 @@ namespace BreadBuilder.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+
+            IList<Ingredient> viewIngredients = IngredientData.GetAll();
+            return View(viewIngredients);
         }
 
         public IActionResult Add()
@@ -56,7 +58,9 @@ namespace BreadBuilder.Controllers
                     addIngredientViewModel.ingredients.Add(item);
                 }
 
-                return View(addIngredientViewModel);
+                
+
+                return Redirect("/Ingredient");
 
 
 

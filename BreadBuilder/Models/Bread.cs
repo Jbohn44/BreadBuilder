@@ -11,7 +11,7 @@ namespace BreadBuilder.Models
         public string Name { get; set; }
         public string Instructions { get; set; }
 
-        //public IList<Ingredient> ingredients { get; set; }
+        public IList<Ingredient> breadIngredients{ get; set; }
 
 
         public int nextID = 1;

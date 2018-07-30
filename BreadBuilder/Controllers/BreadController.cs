@@ -19,7 +19,9 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Add()
         {
+            List<Ingredient> breadIngredients = IngredientData.GetAll();
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
+            addBreadViewModel.breadIngredients = breadIngredients;
             return View(addBreadViewModel);
         }
 

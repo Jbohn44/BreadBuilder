@@ -1,7 +1,17 @@
-﻿
+﻿@model List<BreadBuilder.Models.Ingredient>
 @{
     ViewData["Title"] = "Ingredients";
 }
 
 <h2>Ingredients</h2>
+<br />
 
+@foreach(var item in Model)
+{
+    <li>
+        <ul>
+            @item.Name
+        </ul>
+    </li>
+
+}

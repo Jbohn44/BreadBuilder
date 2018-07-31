@@ -10,6 +10,8 @@ namespace BreadBuilder.Models
         public int ID { get; set; }
         public string Name { get; set; }
 
+       
+
         public int nextId = 1;
 
         public Ingredient()

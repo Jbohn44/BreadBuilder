@@ -17,9 +17,8 @@ namespace BreadBuilder.ViewModels
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
 
-        public IList<Ingredient> breadIngredients { get; set; }
-
-
+        //List of Ingredients for the CheckBoxes on view page
+        public IList<Ingredient> BreadIngredients { get; set; }
 
         public AddBreadViewModel() { }
     

@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BreadBuilder.Data;
 using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BreadBuilder.Controllers
 {
     public class BreadController : Controller
     {
+        private BreadDbContext context;
+        
+        public BreadController(BreadDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         public IActionResult Index()
         {
-            List<Bread> breads = BreadData.GetAll();
+            //should return a list of breads... May need to be revised
+            IList<Bread> breads = context.Breads.Include(b => b.Name).ToList();
 
             return View(breads);
         }
@@ -33,10 +43,12 @@ namespace BreadBuilder.Controllers
             {
                 Bread newBread = new Bread
                 {
-                    Name = addBreadViewModel.Name
+                    Name = addBreadViewModel.Name,
+                    Instructions = addBreadViewModel.Instructions
                 };
 
-                BreadData.Add(newBread);
+                context.Breads.Add(newBread);
+                context.SaveChanges();
 
                 return Redirect("/Bread");
             }

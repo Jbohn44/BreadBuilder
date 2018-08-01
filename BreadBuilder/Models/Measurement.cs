@@ -7,6 +7,7 @@ namespace BreadBuilder.Models
 {
     public class Measurement
     {
+        public int ID { get; set; }
         public int MeasurementValue { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace BreadBuilder.Controllers
         public IActionResult Index()
         {
             //should return a list of breads... May need to be revised
-            IList<Bread> breads = context.Breads.Include(b => b.Name).ToList();
+            IList<Bread> breads = context.Breads.ToList();
 
             return View(breads);
         }
@@ -30,7 +30,7 @@ namespace BreadBuilder.Controllers
         public IActionResult Add()
         {
             //passes a list of already added ingredients to the bread creation page
-            List<Ingredient> breadIngredients = IngredientData.GetAll();
+            List<Ingredient> breadIngredients = context.Ingredients.ToList();
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
             addBreadViewModel.BreadIngredients = breadIngredients;
             return View(addBreadViewModel);

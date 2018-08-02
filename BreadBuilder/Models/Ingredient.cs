@@ -12,13 +12,6 @@ namespace BreadBuilder.Models
 
        
 
-        public int nextId = 1;
-
-        public Ingredient()
-        {
-            ID = nextId;
-
-            nextId++;
-        }
+      
     }
 }

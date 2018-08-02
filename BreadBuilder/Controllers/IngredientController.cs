@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BreadBuilder.Data;
 using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,18 @@ namespace BreadBuilder.Controllers
 {
     public class IngredientController : Controller
     {
+        private BreadDbContext context;
+
+        public IngredientController(BreadDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
+
         public IActionResult Index()
         {
 
-            IList<Ingredient> viewIngredients = IngredientData.GetAll();
+            IList<Ingredient> viewIngredients = context.Ingredients.ToList();
             return View(viewIngredients);
         }
 
@@ -22,7 +31,7 @@ namespace BreadBuilder.Controllers
             AddIngredientViewModel addIngredientViewModel = new AddIngredientViewModel();
 
             //creates a list from the Ingredient Data page
-            List<Ingredient> ingredientList = IngredientData.GetAll();
+            List<Ingredient> ingredientList = context.Ingredients.ToList();
 
             //loops through that list and adds the items to the ingredient list in the ViewModel
             foreach (var item in ingredientList)
@@ -47,10 +56,11 @@ namespace BreadBuilder.Controllers
 
                 };
 
-                IngredientData.Add(newIngredient);
+                context.Ingredients.Add(newIngredient);
+                context.SaveChanges();
 
                 //creates a list from the Ingredient Data page
-                List<Ingredient> ingredientList = IngredientData.GetAll();
+                List<Ingredient> ingredientList = context.Ingredients.ToList();
 
                 //loops through that list and adds the items to the ingredient list in the ViewModel
                 foreach(var item in ingredientList)

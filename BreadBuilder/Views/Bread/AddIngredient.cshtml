@@ -1,0 +1,33 @@
+﻿@model List<BreadBuilder.Models.Ingredient>
+
+@{
+    ViewData["Title"] = "Add Ingredients";
+}
+
+<h2>Choose Ingredients for your recipe</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddIngredient">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @foreach(var item in Model)
+                {
+                <label asp-for="@Model" >@item.Name</label>
+                <input type="checkbox" value="@item.Name" name="@item.Name" />
+                 }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

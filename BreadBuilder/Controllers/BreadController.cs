@@ -27,12 +27,27 @@ namespace BreadBuilder.Controllers
             return View(breads);
         }
 
+        public IActionResult AddIngredient()
+        {
+            IList<Ingredient> ingredients = context.Ingredients.ToList();
+
+            return View(ingredients);
+        }
+
+        /*public IActionResult AddIngredient(AddIngredientToRecipeViewModel addIngredientToRecipeViewModel)
+        {
+           
+            
+            
+            return Redirect("Bread/Add");
+        }*/
+
         public IActionResult Add()
         {
-            //passes a list of already added ingredients to the bread creation page
-            List<Ingredient> breadIngredients = context.Ingredients.ToList();
+            
+            
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
-            addBreadViewModel.BreadIngredients = breadIngredients;
+            
             return View(addBreadViewModel);
         }
 

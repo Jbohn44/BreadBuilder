@@ -30,6 +30,21 @@ namespace BreadBuilder.Controllers
             return View(addUserViewModel);
         }
 
+        [HttpPost]
+        public IActionResult Add(AddUserViewModel addUserViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                User newUser = new User
+                {
+                    Name = addUserViewModel.Username,
+                    Password = addUserViewModel.Password
+                };
+                return RedirectToAction("UserRecipeList");
+            }
+            return View(addUserViewModel);
+        }
+
         public IActionResult UserRecipeList()
         {
             List<Bread> breads = context.Breads.ToList();

@@ -11,7 +11,7 @@ namespace BreadBuilder.ViewModels
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username Required")]
-        [Range(8, 20)]
+       
         public string Username { get; set; }
 
         [Display(Name = "Password")]

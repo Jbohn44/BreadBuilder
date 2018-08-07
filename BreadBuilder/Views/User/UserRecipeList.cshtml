@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BreadBuilder.Models.Bread>
+
+@{
+    ViewData["Title"] = "UserRecipeList";
+}
+
+<h2>My Bread List</h2>
+
+<p>
+    <a asp-controller="Bread" asp-action="Add">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Instructions)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructions)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

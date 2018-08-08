@@ -21,42 +21,50 @@ namespace BreadBuilder.ViewModels
         
         public IList<RecipeItem> RecipeItems { get; set; }
 
+
+        public Measurement Measurement { get; set; }
+
+        public Ingredient Ingredient { get; set; }
+
         public List<SelectListItem> MeasurementUnits { get; set; }
 
         public AddBreadViewModel()
         {
-            MeasurementUnits = new List<SelectListItem>
+
+
+            MeasurementUnits = new List<SelectListItem>();
+
+            
+            MeasurementUnits.Add(new SelectListItem
             {
-                new SelectListItem
-                {
-                    Value = ((int)Measurement.MeasurmentUnit.oz).ToString(),
-                    Text = Measurement.MeasurmentUnit.oz.ToString()
-                },
+                Value = ((int)MeasurementUnit.oz).ToString(),
+                Text = MeasurementUnit.oz.ToString()
+            });
 
-                new SelectListItem
-                {
-                    Value = ((int)Measurement.MeasurmentUnit.g).ToString(),
-                    Text = Measurement.MeasurmentUnit.g.ToString()
-                },
+            MeasurementUnits.Add(new SelectListItem
+            {
+                Value = ((int)MeasurementUnit.g).ToString(),
+                Text = MeasurementUnit.g.ToString()
+            });
 
-                new SelectListItem
-                {
-                    Value = ((int)Measurement.MeasurmentUnit.tbsp).ToString(),
-                    Text = Measurement.MeasurmentUnit.tbsp.ToString()
-                },
+            MeasurementUnits.Add(new SelectListItem
+            {
+                Value = ((int)MeasurementUnit.tbsp).ToString(),
+                Text = MeasurementUnit.tbsp.ToString()
+            });
 
-                new SelectListItem
-                {
-                    Value = ((int)Measurement.MeasurmentUnit.tsp).ToString(),
-                    Text = Measurement.MeasurmentUnit.tsp.ToString()
-                },
+            MeasurementUnits.Add(new SelectListItem
+            {
+                Value = ((int)MeasurementUnit.tsp).ToString(),
+                Text = MeasurementUnit.tsp.ToString()
+            });
 
-                new SelectListItem
-                {
-                    Value = ((int)Measurement.MeasurmentUnit.cup).ToString(),
-                    Text = Measurement.MeasurmentUnit.cup.ToString()
-                }
-            };
+            MeasurementUnits.Add(new SelectListItem
+            {
+                Value = ((int)MeasurementUnit.cup).ToString(),
+                Text = MeasurementUnit.cup.ToString()
+            });
+
 
 
 

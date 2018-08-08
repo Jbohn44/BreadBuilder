@@ -17,14 +17,7 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            @foreach(var item in Model.BreadIngredients)
-            {
-              <div class="form-group">
-              <label asp-for="@item.Name" class="control-label">@item.Name Quantity</label>
-              <input asp-for="RecipeItems" class="form-control" />
-              <span asp-validation-for="RecipeItems" class="text-danger"></span>
-              </div>
-            }
+        
             <div class="form-group">
                 <label asp-for="Instructions" class="control-label"></label>
                 <textarea rows="20" cols="100" asp-for="Instructions" class="form-control"></textarea>

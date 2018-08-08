@@ -8,6 +8,7 @@ namespace BreadBuilder.Models
 {
     public class RecipeItem
     {
+        public int ID { get; set; }
         public Ingredient RecipeIngredient { get; set; }
 
         public Measurement RecipeMeasurement { get; set; }

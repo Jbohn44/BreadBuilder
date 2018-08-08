@@ -30,9 +30,9 @@ namespace BreadBuilder.Controllers
         public IActionResult Add()
         {
             //passes a list of already added ingredients to the bread creation page
-            List<Ingredient> breadIngredients = context.Ingredients.ToList();
+            
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
-            addBreadViewModel.BreadIngredients = breadIngredients;
+            
             return View(addBreadViewModel);
         }
 

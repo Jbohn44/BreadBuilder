@@ -9,5 +9,10 @@ namespace BreadBuilder.Models
     {
         public int ID { get; set; }
         public int MeasurementValue { get; set; }
+
+        public enum MeasurmentUnit
+        {
+            oz, g, tbsp, tsp, cup
+        }
     }
 }

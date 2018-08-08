@@ -40,6 +40,10 @@ namespace BreadBuilder.Controllers
                     Name = addUserViewModel.Username,
                     Password = addUserViewModel.Password
                 };
+
+                context.Users.Add(newUser);
+                context.SaveChanges();
+
                 return RedirectToAction("UserRecipeList");
             }
             return View(addUserViewModel);

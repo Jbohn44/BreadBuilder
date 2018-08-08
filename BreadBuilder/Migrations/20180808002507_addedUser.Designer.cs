@@ -4,14 +4,16 @@ using BreadBuilder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    partial class BreadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180808002507_addedUser")]
+    partial class addedUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,21 +64,6 @@ namespace BreadBuilder.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Measurements");
-                });
-
-            modelBuilder.Entity("BreadBuilder.Models.User", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BreadBuilder.Models.Ingredient", b =>

@@ -1,4 +1,5 @@
 ﻿using BreadBuilder.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,12 +18,51 @@ namespace BreadBuilder.ViewModels
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
 
-        //List of Ingredients for the CheckBoxes on view page
+        
         public IList<RecipeItem> RecipeItems { get; set; }
 
-        public IList<Ingredient> BreadIngredients { get; set; }
+        public List<SelectListItem> MeasurementUnits { get; set; }
 
-        public AddBreadViewModel() { }
+        public AddBreadViewModel()
+        {
+            MeasurementUnits = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value = ((int)Measurement.MeasurmentUnit.oz).ToString(),
+                    Text = Measurement.MeasurmentUnit.oz.ToString()
+                },
+
+                new SelectListItem
+                {
+                    Value = ((int)Measurement.MeasurmentUnit.g).ToString(),
+                    Text = Measurement.MeasurmentUnit.g.ToString()
+                },
+
+                new SelectListItem
+                {
+                    Value = ((int)Measurement.MeasurmentUnit.tbsp).ToString(),
+                    Text = Measurement.MeasurmentUnit.tbsp.ToString()
+                },
+
+                new SelectListItem
+                {
+                    Value = ((int)Measurement.MeasurmentUnit.tsp).ToString(),
+                    Text = Measurement.MeasurmentUnit.tsp.ToString()
+                },
+
+                new SelectListItem
+                {
+                    Value = ((int)Measurement.MeasurmentUnit.cup).ToString(),
+                    Text = Measurement.MeasurmentUnit.cup.ToString()
+                }
+            };
+
+
+
+
+
+        }
     
 
     }

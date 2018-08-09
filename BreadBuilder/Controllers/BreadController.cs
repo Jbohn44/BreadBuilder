@@ -41,10 +41,32 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+                Ingredient newIngredient = new Ingredient
+                {
+                    Name = addBreadViewModel.Ingredient.Name
+                };
+                context.Ingredients.Add(newIngredient);
+                context.SaveChanges();
+                Measurement newMeasurement = new Measurement
+                {
+                    Value = addBreadViewModel.Measurement.Value,
+                    Unit = addBreadViewModel.Measurement.Unit
+                };
+                context.Measurements.Add(newMeasurement);
+                context.SaveChanges();
+
+                RecipeItem newRecipeItem = new RecipeItem
+                {
+                    RecipeIngredient = addBreadViewModel.Ingredient,
+                    RecipeMeasurement = addBreadViewModel.Measurement
+                };
+                context.RecipeItems.Add(newRecipeItem);
+                context.SaveChanges();
                 Bread newBread = new Bread
                 {
                     Name = addBreadViewModel.Name,
                     Instructions = addBreadViewModel.Instructions
+                    
                 };
 
                 context.Breads.Add(newBread);

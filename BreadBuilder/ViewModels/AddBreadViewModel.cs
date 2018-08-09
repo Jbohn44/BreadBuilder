@@ -28,12 +28,15 @@ namespace BreadBuilder.ViewModels
 
         public List<SelectListItem> MeasurementUnits { get; set; }
 
+        public List<SelectListItem> Ingredients { get; set; }
+
         public AddBreadViewModel()
         {
 
+            
 
             MeasurementUnits = new List<SelectListItem>();
-
+            
             
             MeasurementUnits.Add(new SelectListItem
             {
@@ -65,8 +68,7 @@ namespace BreadBuilder.ViewModels
                 Text = MeasurementUnit.cup.ToString()
             });
 
-
-
+            
 
 
 

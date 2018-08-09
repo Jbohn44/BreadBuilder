@@ -4,14 +4,16 @@ using BreadBuilder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    partial class BreadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180809004850_RecipeItem2")]
+    partial class RecipeItem2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace BreadBuilder.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("RecipeItemID");
+                    b.Property<int?>("RecipeItemID");
 
                     b.HasKey("ID");
 
@@ -104,8 +106,7 @@ namespace BreadBuilder.Migrations
                 {
                     b.HasOne("BreadBuilder.Models.RecipeItem")
                         .WithMany("Breads")
-                        .HasForeignKey("RecipeItemID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RecipeItemID");
                 });
 
             modelBuilder.Entity("BreadBuilder.Models.RecipeItem", b =>

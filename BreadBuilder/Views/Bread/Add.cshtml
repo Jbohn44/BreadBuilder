@@ -4,6 +4,8 @@
     ViewData["Title"] = "Add";
 }
 
+<script src="~/js/site.js"></script>
+
 <h2>Add a Bread!</h2>
 
 
@@ -17,7 +19,8 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <span class="form-inline">
+            <div id="wrapper">
+            @*<span class="form-inline">
                 <label asp-for="Ingredient.Name">Ingredient</label>
                 <input asp-for="Ingredient.Name" class="form-control" />
 
@@ -26,8 +29,13 @@
 
                 <label asp-for="Measurement.Unit">Unit</label>
                 <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits"></select>
+
+                <button onclick="addInput()">Click to add Stuff</button>
             
-            </span>
+            </span>*@
+                <button onclick="addInput()">Click to add Stuff</button>
+            </div>
+            
             <div class="form-group">
                 <label asp-for="Instructions" class="control-label"></label>
                 <textarea rows="20" cols="100" asp-for="Instructions" class="form-control"></textarea>

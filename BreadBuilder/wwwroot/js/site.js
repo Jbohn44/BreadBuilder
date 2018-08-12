@@ -2,7 +2,7 @@
 
 
 var formPopulate =
-    '<span class="form-inline">' +
+    '<div id="wrapper" class="form-group row">' +
     '<label asp-for="Ingredient.Name">Ingredient</label>' +
     '<input asp-for="Ingredient.Name" class="form-control" />' +
 
@@ -11,16 +11,16 @@ var formPopulate =
 
     '<label asp-for="Measurement.Unit">Unit</label>' +
     '<select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits"></select>' +
-    '<button onclick="addInput()">Click to add Stuff</button>' +
-    '</span>';
-
+    '</div>';
+var counter = 1;
 
 
 
 function addInput()
 {
+   
     document.getElementById("wrapper").innerHTML = formPopulate;
-
+    counter++;
 }
 
 

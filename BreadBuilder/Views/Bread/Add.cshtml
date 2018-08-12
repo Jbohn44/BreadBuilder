@@ -11,34 +11,40 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div>
         <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div>
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+             </div>
+    
+
+            <div id="wrapper" class="form-group">
+                    <div class="col-sm-6">
+                        <label asp-for="Ingredient.Name">Ingredient</label>
+                        <input asp-for="Ingredient.Name" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label asp-for="Measurement.Value">Measurement</label>
+                        <input asp-for="Measurement.Value" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label asp-for="Measurement.Unit">Unit</label>
+                        <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits"></select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button onclick="addInput()">Click to add Stuff</button>
+                    </div>
+
+
             </div>
-            <div id="wrapper">
-            @*<span class="form-inline">
-                <label asp-for="Ingredient.Name">Ingredient</label>
-                <input asp-for="Ingredient.Name" class="form-control" />
-
-                <label asp-for="Measurement.Value">Measurement</label>
-                <input asp-for="Measurement.Value" class="form-control" />
-
-                <label asp-for="Measurement.Unit">Unit</label>
-                <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits"></select>
-
-                <button onclick="addInput()">Click to add Stuff</button>
-            
-            </span>*@
-                <button onclick="addInput()">Click to add Stuff</button>
-            </div>
-            
-            <div class="form-group">
+           
+            <div>
                 <label asp-for="Instructions" class="control-label"></label>
-                <textarea rows="20" cols="100" asp-for="Instructions" class="form-control"></textarea>
+                <textarea rows="20" cols="50" asp-for="Instructions" class="form-control"></textarea>
                 <span asp-validation-for="Instructions" class="text-danger"></span>
             </div>
             <div class="form-group">

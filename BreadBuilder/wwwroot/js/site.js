@@ -12,7 +12,6 @@ var formPopulate =
     '<label asp-for="Measurement.Unit">Unit</label>' +
     '<select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits"></select>' +
     '</div>';
-var counter = 1;
 
 
 
@@ -20,7 +19,7 @@ function addInput()
 {
    
     document.getElementById("wrapper").innerHTML = formPopulate;
-    counter++;
+   
 }
 
 

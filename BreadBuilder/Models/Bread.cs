@@ -11,7 +11,7 @@ namespace BreadBuilder.Models
         public string Name { get; set; }
         public string Instructions { get; set; }
 
-        public List<BreadRecipeItem> BreadRecipeItems { get; set; }
+        public List<BreadRecipeItem> BreadRecipeItems;
 
 
        

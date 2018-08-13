@@ -28,12 +28,10 @@ namespace BreadBuilder.ViewModels
 
         public List<SelectListItem> MeasurementUnits { get; set; }
 
-        public List<SelectListItem> Ingredients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
 
         public AddBreadViewModel()
         {
-
-            
 
             MeasurementUnits = new List<SelectListItem>();
             
@@ -68,10 +66,19 @@ namespace BreadBuilder.ViewModels
                 Text = MeasurementUnit.cup.ToString()
             });
 
+
+        }
+
+        public AddBreadViewModel(Ingredient ingredient, Measurement measurement)
+        {
+            RecipeItem recipeItem = new RecipeItem
+            {
+                RecipeIngredient = ingredient,
+                RecipeMeasurement = measurement
+
+            };
+            RecipeItems.Add(recipeItem);
             
-
-
-
         }
     
 

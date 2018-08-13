@@ -29,13 +29,22 @@ namespace BreadBuilder.Migrations
 
                     b.Property<string>("Name");
 
+                    b.HasKey("ID");
+
+                    b.ToTable("Breads");
+                });
+
+            modelBuilder.Entity("BreadBuilder.Models.BreadRecipeItem", b =>
+                {
+                    b.Property<int>("BreadID");
+
                     b.Property<int>("RecipeItemID");
 
-                    b.HasKey("ID");
+                    b.HasKey("BreadID", "RecipeItemID");
 
                     b.HasIndex("RecipeItemID");
 
-                    b.ToTable("Breads");
+                    b.ToTable("BreadRecipeItems");
                 });
 
             modelBuilder.Entity("BreadBuilder.Models.Ingredient", b =>
@@ -100,10 +109,15 @@ namespace BreadBuilder.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BreadBuilder.Models.Bread", b =>
+            modelBuilder.Entity("BreadBuilder.Models.BreadRecipeItem", b =>
                 {
-                    b.HasOne("BreadBuilder.Models.RecipeItem")
-                        .WithMany("Breads")
+                    b.HasOne("BreadBuilder.Models.Bread", "Bread")
+                        .WithMany("BreadRecipeItems")
+                        .HasForeignKey("BreadID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BreadBuilder.Models.RecipeItem", "RecipeItem")
+                        .WithMany("BreadRecipeItems")
                         .HasForeignKey("RecipeItemID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

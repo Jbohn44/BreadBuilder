@@ -11,50 +11,51 @@
 
 <hr />
 
-        <form asp-action="Add">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div class="col-md-4"
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-             </div>
-            <br />
+<form asp-action="Add">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    
+    <div class="row" id="wrapper">
+        
+            <button class="btn btn-default" onclick="addInput()">Click to Add Stuff</button>
+        <br />
+        <br />
+        <div class="col-md-2">
+            <label asp-for="Ingredient.Name">Ingredient</label>
+            <input asp-for="Ingredient.Name" class="form-control" />
+        </div>
+        <div class="col-md-1">
+            <label asp-for="Measurement.Value">Quantity</label>
+            <input asp-for="Measurement.Value" class="form-control" />
+        </div>
+        <div class="col-md-1">
+            <label asp-for="Measurement.Unit">Unit</label>
+            <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
+        </div>
+        <br />
 
-            <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="Ingredient.Name">Ingredient</label>
-                        <input asp-for="Ingredient.Name" class="form-control" />
-                    </div>
-                    <div class="col-md-1">
-                        <label asp-for="Measurement.Value">Quantity</label>
-                        <input asp-for="Measurement.Value" class="form-control"  />
-                    </div>
-                    <div class="col-md-1">
-                        <label asp-for="Measurement.Unit">Unit</label>
-                        <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-                    </div>
-                    <br />
-                    
-                    <div id="wrapper" class="col-md-5">
-                        <div>
-                            <button class="btn btn-default" onclick="addInput()">Click to Add Stuff</button>
-                        </div>
-                    </div>
-            </div>
-           <br />
-            <div class="row">
-                <div class="col-md-6">
-                <label asp-for="Instructions" class="control-label"></label>
-                <textarea rows="20" cols="50" asp-for="Instructions" class="form-control"></textarea>
-                <span asp-validation-for="Instructions" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Build" class="btn btn-default" />
-            </div>
-        </form>
+
+    
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label asp-for="Instructions" class="control-label"></label>
+            <textarea rows="20" cols="50" asp-for="Instructions" class="form-control"></textarea>
+            <span asp-validation-for="Instructions" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Build" class="btn btn-default" />
+    </div>
+</form>
  
 <div>
     <a asp-action="Index">Back to List</a>

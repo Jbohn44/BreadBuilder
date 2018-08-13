@@ -12,7 +12,8 @@ namespace BreadBuilder.Data
         public DbSet<Bread> Breads { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<RecipeItem> RecipeItems { get; set; }  //Might need this... but at the moment I think I can get by with just an Ingredients and Measurements table
+        public DbSet<RecipeItem> RecipeItems { get; set; }
+        public DbSet<BreadRecipeItem> BreadRecipeItems { get; set; }
 
         public DbSet<Measurement> Measurements { get; set; }
 
@@ -20,6 +21,11 @@ namespace BreadBuilder.Data
             :base(options)
         { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BreadRecipeItem>()
+                .HasKey(c => new { c.BreadID, c.RecipeItemID });
+        }
 
     }
 }

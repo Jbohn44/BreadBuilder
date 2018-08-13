@@ -22,9 +22,12 @@
     </div>
     <br />
     
-    <div class="row" id="wrapper">
+    <div id="wrapper">
         
+        <div class="row">
+        <div class="col-sm-12">
             <button class="btn btn-default" onclick="addInput()">Click to Add Stuff</button>
+        </div>
         <br />
         <br />
         <div class="col-md-2">
@@ -40,10 +43,10 @@
             <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
         </div>
         <br />
-
-
-    
     </div>
+    </div> 
+    
+   
     <br />
     <div class="row">
         <div class="col-md-6">

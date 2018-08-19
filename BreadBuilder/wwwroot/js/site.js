@@ -14,11 +14,11 @@ var formPopulate =
     '<div class="col-md-1">' +
     '<label asp-for="Measurement.Unit">Unit</label>' +
     '<select asp-for="Measurement.Unit" class="dropdown">' +
-    '<option value="oz">oz</option>' +
-    '<option value="g">g</option>' +
-    '<option value="tbsp">tbsp</option>' +
-    '<option value="tsp">tsp</option>' +
-    '<option value="cup">cup</option>' +
+    '<option value="0">oz</option>' +
+    '<option value="1">g</option>' +
+    '<option value="2">tbsp</option>' +
+    '<option value="3">tsp</option>' +
+    '<option value="4">cup</option>' +
     '</select> ' +
     '</div>' +
     '</div>';
@@ -39,5 +39,7 @@ function addInput()
    
 }
 
+var input = document.createElement("input");
 
+input.type
              

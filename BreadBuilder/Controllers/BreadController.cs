@@ -41,7 +41,7 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ingredient newIngredient = new Ingredient
+                /*Ingredient newIngredient = new Ingredient
                 {
                     Name = addBreadViewModel.Ingredient.Name
                 };
@@ -53,9 +53,9 @@ namespace BreadBuilder.Controllers
                     Unit = addBreadViewModel.Measurement.Unit
                 };
                 context.Measurements.Add(newMeasurement);
-                context.SaveChanges();
+                context.SaveChanges();*/
 
-                RecipeItem newRecipeItem = new RecipeItem
+               RecipeItem newRecipeItem = new RecipeItem
                 {
                     RecipeIngredient = addBreadViewModel.Ingredient,
                     RecipeMeasurement = addBreadViewModel.Measurement
@@ -70,6 +70,14 @@ namespace BreadBuilder.Controllers
                 };
 
                 context.Breads.Add(newBread);
+                context.SaveChanges();
+
+                BreadRecipeItem breadRecipeItem = new BreadRecipeItem
+                {
+                    Bread = newBread,
+                    RecipeItem = newRecipeItem
+                };
+                context.BreadRecipeItems.Add(breadRecipeItem);
                 context.SaveChanges();
 
                 return Redirect("/Bread");

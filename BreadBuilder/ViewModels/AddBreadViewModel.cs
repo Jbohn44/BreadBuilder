@@ -69,17 +69,9 @@ namespace BreadBuilder.ViewModels
 
         }
 
-        public AddBreadViewModel(Ingredient ingredient, Measurement measurement)
-        {
-            RecipeItem recipeItem = new RecipeItem
-            {
-                RecipeIngredient = ingredient,
-                RecipeMeasurement = measurement
-
-            };
-            RecipeItems.Add(recipeItem);
+  
             
-        }
+        
     
 
     }

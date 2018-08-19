@@ -39,7 +39,5 @@ function addInput()
    
 }
 
-var input = document.createElement("input");
 
-input.type
              

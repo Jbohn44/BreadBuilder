@@ -29,7 +29,8 @@ namespace BreadBuilder.ViewModels
         public List<SelectListItem> MeasurementUnits { get; set; }
 
         public List<Ingredient> Ingredients { get; set; }
-
+        public List<Measurement> Measurements { get; set; }
+       
         public AddBreadViewModel()
         {
 

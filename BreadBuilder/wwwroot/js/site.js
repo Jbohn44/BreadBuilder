@@ -1,8 +1,10 @@
 ﻿// Write your JavaScript code.
 
-var counter = 1;
+var counter = 0;
+var divId = 0;
+
 var formPopulate =
-    '<div class="row">' +
+
     '<div class="col-md-2">' +
     '<label asp-for="Ingredient.Name">Ingredient</label>' +
     '<input asp-for="Ingredient.Name" class="form-control" />' +
@@ -20,17 +22,24 @@ var formPopulate =
     '<option value="3">tsp</option>' +
     '<option value="4">cup</option>' +
     '</select> ' +
-    '</div>' +
     '</div>';
     
 
 
 function addInput()
 {
+   
     if (counter < 10) {
-        document.getElementById("wrapper").innerHTML += formPopulate;
+        divId++;
         counter++;
-
+        var div = document.createElement('DIV');
+        div.className = "row";
+        div.id = divId;
+        div.innerHTML = formPopulate;
+        document.getElementById("wrapper").appendChild(div);
+        
+        
+       
     }
     else
     {
@@ -39,5 +48,21 @@ function addInput()
    
 }
 
+function removeInput()
+{
+    if (counter >= 1)
+    {   
+        counter--;
+        var removeId = divId;
+        var divToRemove = document.getElementById(removeId);
+        divToRemove.parentNode.removeChild(divToRemove);
+        
+        divId--;
+    }
+    else
+    {
+       alert("no ingredients yet")
+    }
+}
 
              

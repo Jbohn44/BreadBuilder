@@ -4,12 +4,21 @@
     ViewData["Title"] = "Add";
 }
 
-<script src="~/js/site.js"></script>
+
 
 <h2>Add a Bread!</h2>
 
 
 <hr />
+<div class="row">
+    <div class="col-sm-12">
+        <button class="btn btn-default" onclick="addInput()" value="Add">Add Ingredient</button>
+    
+        <button class="btn btn-default" onclick="removeInput()" value="Remove">Remove Ingredient</button>
+    </div>
+</div>
+<br/>
+<br/>
 
 <form asp-action="Add">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -21,41 +30,33 @@
         </div>
     </div>
     <br />
+  
     
-    <div>
-        
-        <div class="row">
-        <div class="col-sm-12">
-            <button class="btn btn-default" onclick="addInput()">Click to Add Stuff</button>
-        </div>
-        <br />
-        <br />
-        
-        <table class="table table-striped" id="wrapper">
-            <tr>
-                <th>Ingredient</th>
-                <th>Measurement</th>
-                <th>Unit</th>
-            </tr>
-            <tr>
-                <td>
-                    <input asp-for="Ingredient.Name" class="form-control" />
-                </td>
-                <td>   
-                    <input asp-for="Measurement.Value" class="form-control" />
-                </td>
-                <td>
-                    <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-                </td>
-            </tr>
+    <div id="wrapper">
+      
+           
 
-        </table>
-       
-        <br />
+            <div class="hidden">
+            <div class="col-md-2">
+                    <label asp-for="Ingredient.Name">Ingredient</label>
+                    <input asp-for="Ingredient.Name" class="form-control" />
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="Measurement.Value">Quantity</label>
+                    <input asp-for="Measurement.Value" class="form-control" />
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="Measurement.Unit">Unit</label>
+                    <select asp-for="Measurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
+                </div>
+                <br />
+             </div>
+
+        
+
     </div>
-    </div> 
-    
-   
+
+
     <br />
     <div class="row">
         <div class="col-md-6">

@@ -22,14 +22,14 @@ namespace BreadBuilder.ViewModels
         public IList<RecipeItem> RecipeItems { get; set; }
 
 
-        public Measurement Measurement { get; set; }
+        //public Measurement Measurement { get; set; }
 
-        public Ingredient Ingredient { get; set; }
+        //public Ingredient Ingredient { get; set; }
 
         public List<SelectListItem> MeasurementUnits { get; set; }
 
-        public List<Ingredient> Ingredients { get; set; }
-        public List<Measurement> Measurements { get; set; }
+        //public List<Ingredient> Ingredients { get; set; }
+        //public List<Measurement> Measurements { get; set; }
        
         public AddBreadViewModel()
         {

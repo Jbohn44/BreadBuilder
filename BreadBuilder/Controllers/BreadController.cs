@@ -41,27 +41,21 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*Ingredient newIngredient = new Ingredient
+                
+                List<RecipeItem> RecipeItemList = new List<RecipeItem>();
+               foreach(var item in addBreadViewModel.RecipeItems)
                 {
-                    Name = addBreadViewModel.Ingredient.Name
-                };
-                context.Ingredients.Add(newIngredient);
-                context.SaveChanges();
-                Measurement newMeasurement = new Measurement
-                {
-                    Value = addBreadViewModel.Measurement.Value,
-                    Unit = addBreadViewModel.Measurement.Unit
-                };
-                context.Measurements.Add(newMeasurement);
-                context.SaveChanges();*/
-
-               RecipeItem newRecipeItem = new RecipeItem
-                {
-                    RecipeIngredient = addBreadViewModel.Ingredient,
-                    RecipeMeasurement = addBreadViewModel.Measurement
-                };
-                context.RecipeItems.Add(newRecipeItem);
-                context.SaveChanges();
+                    RecipeItem newRecipeItem = new RecipeItem
+                    {
+                        RecipeIngredient = item.RecipeIngredient,
+                        RecipeMeasurement = item.RecipeMeasurement
+                    };
+                    context.RecipeItems.Add(newRecipeItem);
+                    context.SaveChanges();
+                    RecipeItemList.Add(newRecipeItem);
+                } 
+               
+                
                 Bread newBread = new Bread
                 {
                     Name = addBreadViewModel.Name,
@@ -72,13 +66,17 @@ namespace BreadBuilder.Controllers
                 context.Breads.Add(newBread);
                 context.SaveChanges();
 
-                BreadRecipeItem breadRecipeItem = new BreadRecipeItem
+                var breadId = newBread.ID;
+                foreach(var item in RecipeItemList)
                 {
-                    Bread = newBread,
-                    RecipeItem = newRecipeItem
-                };
-                context.BreadRecipeItems.Add(breadRecipeItem);
-                context.SaveChanges();
+                    BreadRecipeItem newBreadRecipeItem = new BreadRecipeItem
+                    {
+                        Bread = newBread,
+                        RecipeItem = item
+                    };
+                    context.BreadRecipeItems.Add(newBreadRecipeItem);
+                    context.SaveChanges();
+                }
 
                 return Redirect("/Bread");
             }

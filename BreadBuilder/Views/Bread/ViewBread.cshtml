@@ -1,0 +1,27 @@
+﻿@model BreadBuilder.ViewModels.ViewBreadViewModel
+
+@{
+    ViewData["Title"] = "ViewBread";
+}
+
+<h2>@Model.Bread.Name</h2>
+
+
+   @foreach(var item in Model.Items)
+   {
+      <div>
+          <table>
+              <tr>
+                  <td>@item.RecipeItem.RecipeIngredient.Name</td>
+                  <td>@item.RecipeItem.RecipeMeasurement.Value</td>
+                  <td>@item.RecipeItem.RecipeMeasurement.Unit</td>
+              </tr>
+          </table>
+      </div> 
+
+   }
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

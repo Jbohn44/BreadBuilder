@@ -41,8 +41,10 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                //holds the list of recipe items from viewmodel
                 List<RecipeItem> RecipeItemList = new List<RecipeItem>();
+
+                //loops through each recipe item in viewmodel and instantiates a new RecipeItem--Also adds said RecipeItem to a List
                foreach(var item in addBreadViewModel.RecipeItems)
                 {
                     RecipeItem newRecipeItem = new RecipeItem
@@ -55,7 +57,7 @@ namespace BreadBuilder.Controllers
                     RecipeItemList.Add(newRecipeItem);
                 } 
                
-                
+                //instantiates and saves the Bread
                 Bread newBread = new Bread
                 {
                     Name = addBreadViewModel.Name,
@@ -66,7 +68,9 @@ namespace BreadBuilder.Controllers
                 context.Breads.Add(newBread);
                 context.SaveChanges();
 
-                var breadId = newBread.ID;
+                var breadId = newBread.ID;  //to delete... maybe not needed
+
+                //cycles through the list of recipe items then adds them to database with bread
                 foreach(var item in RecipeItemList)
                 {
                     BreadRecipeItem newBreadRecipeItem = new BreadRecipeItem
@@ -84,5 +88,23 @@ namespace BreadBuilder.Controllers
             return View(addBreadViewModel);
 
         }  
+
+        public IActionResult ViewBread(int id)
+        {
+            List<BreadRecipeItem> items = context
+                .BreadRecipeItems
+                .Include(item => item.RecipeItem)
+                .Where(bri => bri.BreadID == id)
+                .ToList();
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items
+            };
+         
+            return View(viewModel);
+        }
     }
 }

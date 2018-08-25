@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    [Migration("20180813010032_initialMigration")]
+    [Migration("20180825185017_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,19 +34,6 @@ namespace BreadBuilder.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Breads");
-                });
-
-            modelBuilder.Entity("BreadBuilder.Models.BreadRecipeItem", b =>
-                {
-                    b.Property<int>("BreadID");
-
-                    b.Property<int>("RecipeItemID");
-
-                    b.HasKey("BreadID", "RecipeItemID");
-
-                    b.HasIndex("RecipeItemID");
-
-                    b.ToTable("BreadRecipeItems");
                 });
 
             modelBuilder.Entity("BreadBuilder.Models.Ingredient", b =>
@@ -83,11 +70,15 @@ namespace BreadBuilder.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BreadID");
+
                     b.Property<int?>("RecipeIngredientID");
 
                     b.Property<int?>("RecipeMeasurementID");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BreadID");
 
                     b.HasIndex("RecipeIngredientID");
 
@@ -111,21 +102,12 @@ namespace BreadBuilder.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BreadBuilder.Models.BreadRecipeItem", b =>
-                {
-                    b.HasOne("BreadBuilder.Models.Bread", "Bread")
-                        .WithMany("BreadRecipeItems")
-                        .HasForeignKey("BreadID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BreadBuilder.Models.RecipeItem", "RecipeItem")
-                        .WithMany("BreadRecipeItems")
-                        .HasForeignKey("RecipeItemID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("BreadBuilder.Models.RecipeItem", b =>
                 {
+                    b.HasOne("BreadBuilder.Models.Bread", "Bread")
+                        .WithMany()
+                        .HasForeignKey("BreadID");
+
                     b.HasOne("BreadBuilder.Models.Ingredient", "RecipeIngredient")
                         .WithMany()
                         .HasForeignKey("RecipeIngredientID");

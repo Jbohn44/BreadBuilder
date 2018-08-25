@@ -14,7 +14,7 @@ namespace BreadBuilder.Models
 
         public Measurement RecipeMeasurement { get; set; }
 
-        public List<BreadRecipeItem> BreadRecipeItems;
+        public Bread Bread { get; set; }
 
     }
 }

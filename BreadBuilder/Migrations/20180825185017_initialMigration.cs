@@ -69,11 +69,18 @@ namespace BreadBuilder.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     RecipeIngredientID = table.Column<int>(nullable: true),
-                    RecipeMeasurementID = table.Column<int>(nullable: true)
+                    RecipeMeasurementID = table.Column<int>(nullable: true),
+                    BreadID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RecipeItems", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_RecipeItems_Breads_BreadID",
+                        column: x => x.BreadID,
+                        principalTable: "Breads",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_RecipeItems_Ingredients_RecipeIngredientID",
                         column: x => x.RecipeIngredientID,
@@ -88,34 +95,10 @@ namespace BreadBuilder.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "BreadRecipeItems",
-                columns: table => new
-                {
-                    RecipeItemID = table.Column<int>(nullable: false),
-                    BreadID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BreadRecipeItems", x => new { x.BreadID, x.RecipeItemID });
-                    table.ForeignKey(
-                        name: "FK_BreadRecipeItems_Breads_BreadID",
-                        column: x => x.BreadID,
-                        principalTable: "Breads",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BreadRecipeItems_RecipeItems_RecipeItemID",
-                        column: x => x.RecipeItemID,
-                        principalTable: "RecipeItems",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_BreadRecipeItems_RecipeItemID",
-                table: "BreadRecipeItems",
-                column: "RecipeItemID");
+                name: "IX_RecipeItems_BreadID",
+                table: "RecipeItems",
+                column: "BreadID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeItems_RecipeIngredientID",
@@ -131,16 +114,13 @@ namespace BreadBuilder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BreadRecipeItems");
+                name: "RecipeItems");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Breads");
-
-            migrationBuilder.DropTable(
-                name: "RecipeItems");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");

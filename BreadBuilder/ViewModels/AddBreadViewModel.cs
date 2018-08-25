@@ -45,8 +45,20 @@ namespace BreadBuilder.ViewModels
 
             MeasurementUnits.Add(new SelectListItem
             {
+                Value = ((int)MeasurementUnit.lb).ToString(),
+                Text = MeasurementUnit.lb.ToString()
+            });
+
+            MeasurementUnits.Add(new SelectListItem
+            {
                 Value = ((int)MeasurementUnit.g).ToString(),
                 Text = MeasurementUnit.g.ToString()
+            });
+
+            MeasurementUnits.Add(new SelectListItem
+            {
+                Value = ((int)MeasurementUnit.kg).ToString(),
+                Text = MeasurementUnit.kg.ToString()
             });
 
             MeasurementUnits.Add(new SelectListItem

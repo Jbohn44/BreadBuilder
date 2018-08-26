@@ -1,0 +1,62 @@
+﻿@model BreadBuilder.ViewModels.ViewBreadViewModel
+
+@{
+    ViewData["Title"] = "EditBread";
+}
+
+<h2>EditBread</h2>
+
+<h4>ViewBreadViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditBread">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <h2>@Model.Bread.Name</h2>
+                <hr />
+
+                <h3><b>Ingredients</b></h3>
+                <hr />
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                    @foreach (var item in Model.Items)
+                    {
+
+                        <tr>
+
+
+                            <td>@item.RecipeIngredient.Name</td>
+
+                            <td>@item.RecipeMeasurement.Value</td>
+
+                            <td>@item.RecipeMeasurement.Unit</td>
+
+
+                        </tr>
+
+                    }
+
+                </table>
+                <hr />
+
+                <h3><b>Instructions</b></h3>
+                <p>@Model.Bread.Instructions</p>
+
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -92,5 +92,20 @@ namespace BreadBuilder.Controllers
          
             return View(viewModel);
         }
+
+        public IActionResult EditBread(int id)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items
+            };
+
+            return View(viewModel);
+
+        }
     }
 }

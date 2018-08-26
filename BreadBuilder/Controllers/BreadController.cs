@@ -72,7 +72,7 @@ namespace BreadBuilder.Controllers
                 
 
 
-                return Redirect("/Bread");
+                return RedirectToAction($"/ViewBread/{newBread.ID}");
             }
 
             return View(addBreadViewModel);

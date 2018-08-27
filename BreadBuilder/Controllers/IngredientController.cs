@@ -22,8 +22,33 @@ namespace BreadBuilder.Controllers
         public IActionResult Index()
         {
 
-            IList<Ingredient> viewIngredients = context.Ingredients.ToList();
-            return View(viewIngredients);
+            IList<Ingredient> ingredients = context.Ingredients.ToList();
+            IList<Measurement> measurements = context.Measurements.ToList();
+
+            RemoveIngredientViewModel removeIngredientViewModel = new RemoveIngredientViewModel
+            {
+                Ingredients = ingredients,
+                Measurements = measurements
+            };
+            return View(removeIngredientViewModel);
+        }
+
+        public IActionResult DeleteMeasurement(int id)
+        {
+            Measurement theMeasurement = context.Measurements.Single(m => m.ID == id);
+            context.Measurements.Remove(theMeasurement);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteIngredient(int id)
+        {
+            Ingredient theIngredient = context.Ingredients.Single(i => i.ID == id);
+            context.Ingredients.Remove(theIngredient);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Add()

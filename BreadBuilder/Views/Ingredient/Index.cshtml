@@ -1,4 +1,4 @@
-﻿@model List<BreadBuilder.Models.Ingredient>
+﻿@model BreadBuilder.ViewModels.RemoveIngredientViewModel
 @{
     ViewData["Title"] = "Ingredients";
 }
@@ -6,16 +6,27 @@
 <h2>Ingredients</h2>
 <br />
 
-@foreach(var item in Model)
+@foreach(var item in Model.Ingredients)
 {
     <li>
         <ul>
             @item.Name
+            @Html.ActionLink("Delete", "DeleteIngredient", new { id = item.ID })
         </ul>
     </li>
-
 }
 
 <br />
 
-<a asp-controller="Ingredient" asp-action="Add">Add Another Ingredient</a>
+<h2>Measurements</h2>
+@foreach(var item in Model.Measurements)
+{ 
+    <li>
+        <ul>
+            @item.Value
+            @Html.ActionLink("Delete", "DeleteMeasurement", new { id = item.ID })
+        </ul>
+    </li>
+}
+
+<a asp-controller="Ingredient" asp-action="Index">Index</a>

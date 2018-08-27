@@ -1,19 +1,19 @@
-﻿@model BreadBuilder.ViewModels.ViewBreadViewModel
+﻿@model BreadBuilder.ViewModels.EditBreadViewModel
 
 @{
     ViewData["Title"] = "EditBread";
 }
 
-<h2>EditBread</h2>
+<h2>Edit Bread</h2>
 
-<h4>ViewBreadViewModel</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="EditBread">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <h2>@Model.Bread.Name</h2>
+                <h2><input value="@Model.Name" /></h2>
                 <hr />
 
                 <h3><b>Ingredients</b></h3>
@@ -24,15 +24,15 @@
                         <th>Value</th>
                         <th>Unit</th>
                     </tr>
-                    @foreach (var item in Model.Items)
+                    @foreach (var item in Model.RecipeItems)
                     {
 
                         <tr>
 
 
-                            <td>@item.RecipeIngredient.Name</td>
+                            <td><input value="@item.RecipeIngredient.Name" /></td>
 
-                            <td>@item.RecipeMeasurement.Value</td>
+                            <td><input value="@item.RecipeMeasurement.Value" /></td>
 
                             <td>@item.RecipeMeasurement.Unit</td>
 
@@ -45,7 +45,7 @@
                 <hr />
 
                 <h3><b>Instructions</b></h3>
-                <p>@Model.Bread.Instructions</p>
+                <p><textarea value="@Model.Instructions"></textarea></p>
 
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

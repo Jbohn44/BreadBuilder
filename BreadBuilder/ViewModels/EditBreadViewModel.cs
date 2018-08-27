@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BreadBuilder.ViewModels
 {
-    public class AddBreadViewModel
+    public class EditBreadViewModel
     {
         [Required]
         [Display(Name = "Bread Name")]
@@ -17,17 +17,17 @@ namespace BreadBuilder.ViewModels
         [Required]
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
-        
+
         public IList<RecipeItem> RecipeItems { get; set; }
 
         public List<SelectListItem> MeasurementUnits { get; set; }
-       
-        public AddBreadViewModel()
+
+        public EditBreadViewModel()
         {
 
             MeasurementUnits = new List<SelectListItem>();
-            
-            
+
+
             MeasurementUnits.Add(new SelectListItem
             {
                 Value = ((int)MeasurementUnit.oz).ToString(),
@@ -72,11 +72,5 @@ namespace BreadBuilder.ViewModels
 
 
         }
-
-  
-            
-        
-    
-
     }
 }

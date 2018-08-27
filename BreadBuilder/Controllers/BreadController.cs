@@ -98,14 +98,33 @@ namespace BreadBuilder.Controllers
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
-            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            EditBreadViewModel viewModel = new EditBreadViewModel
             {
-                Bread = theBread,
-                Items = items
+                Name = theBread.Name,
+                RecipeItems = items,
+                Instructions = theBread.Instructions
             };
 
             return View(viewModel);
 
+        }
+
+        //TODO  Make an HTTPPOST for EditBread handler
+
+        
+        public IActionResult Delete(int id)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            foreach(var item in items)
+            {
+                context.RecipeItems.Remove(item);
+            }
+            context.Breads.Remove(theBread);
+
+            context.SaveChanges();
+            return RedirectToAction("UserRecipeList", "User");
         }
     }
 }

@@ -84,10 +84,27 @@ namespace BreadBuilder.Controllers
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
+            double flourValue = 0;
+            double waterValue = 0;
+            
+            foreach(var i in items)
+            {
+                if (i.RecipeIngredient.Name.Contains("Flour"))
+                {
+                    flourValue = i.RecipeMeasurement.Value;
+                }
+                if (i.RecipeIngredient.Name.Contains("Water"))
+                {
+                    waterValue = i.RecipeMeasurement.Value;
+                }
+            }
+            double hydration = (waterValue / flourValue) * 100;
+
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
-                Items = items
+                Items = items,
+                Hydration = hydration
             };
          
             return View(viewModel);
@@ -100,6 +117,7 @@ namespace BreadBuilder.Controllers
 
             EditBreadViewModel viewModel = new EditBreadViewModel
             {
+                ID = theBread.ID,
                 Name = theBread.Name,
                 RecipeItems = items,
                 Instructions = theBread.Instructions
@@ -109,9 +127,51 @@ namespace BreadBuilder.Controllers
 
         }
 
-        //TODO  Make an HTTPPOST for EditBread handler
+        [HttpPost]
+        public IActionResult EditBread(EditBreadViewModel editBreadViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //holds the list of recipe items from viewmodel
+                List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == editBreadViewModel.ID).ToList();
+                Bread theBread = context.Breads.Single(b => b.ID == editBreadViewModel.ID);
+                List<RecipeItem> recipeItems = editBreadViewModel.RecipeItems.ToList();
+                theBread.Name = editBreadViewModel.Name;
+                theBread.Instructions = editBreadViewModel.Instructions;
+                
+                context.Breads.Update(theBread);
+                
+                //updates the recipe item, ingredient, and measurement
+                //currently creating new database entries for ingredient and measurement
+                //needs to update database entries instead of creating new entries
+                for(var i =0; i < items.Count; i++)
+                {
+                    items[i].RecipeIngredient = recipeItems[i].RecipeIngredient;
+                    items[i].RecipeMeasurement = recipeItems[i].RecipeMeasurement;
 
-        
+                    context.Ingredients.Update(items[i].RecipeIngredient);
+                    context.Measurements.Update(items[i].RecipeMeasurement);
+                    context.RecipeItems.Update(items[i]);
+                }
+
+                context.SaveChanges();
+
+              
+
+
+
+                return RedirectToAction($"/ViewBread/{editBreadViewModel.ID}");
+            }
+
+            return View(editBreadViewModel);
+
+
+
+        }
+
+     
+
+
         public IActionResult Delete(int id)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();

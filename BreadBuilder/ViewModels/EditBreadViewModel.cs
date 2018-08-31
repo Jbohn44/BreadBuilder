@@ -18,6 +18,8 @@ namespace BreadBuilder.ViewModels
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
 
+        public int ID { get; set; }
+
         public IList<RecipeItem> RecipeItems { get; set; }
 
         public List<SelectListItem> MeasurementUnits { get; set; }
@@ -36,32 +38,8 @@ namespace BreadBuilder.ViewModels
 
             MeasurementUnits.Add(new SelectListItem
             {
-                Value = ((int)MeasurementUnit.lb).ToString(),
-                Text = MeasurementUnit.lb.ToString()
-            });
-
-            MeasurementUnits.Add(new SelectListItem
-            {
                 Value = ((int)MeasurementUnit.g).ToString(),
                 Text = MeasurementUnit.g.ToString()
-            });
-
-            MeasurementUnits.Add(new SelectListItem
-            {
-                Value = ((int)MeasurementUnit.kg).ToString(),
-                Text = MeasurementUnit.kg.ToString()
-            });
-
-            MeasurementUnits.Add(new SelectListItem
-            {
-                Value = ((int)MeasurementUnit.tbsp).ToString(),
-                Text = MeasurementUnit.tbsp.ToString()
-            });
-
-            MeasurementUnits.Add(new SelectListItem
-            {
-                Value = ((int)MeasurementUnit.tsp).ToString(),
-                Text = MeasurementUnit.tsp.ToString()
             });
 
             MeasurementUnits.Add(new SelectListItem

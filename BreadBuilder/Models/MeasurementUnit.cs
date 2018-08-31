@@ -9,7 +9,7 @@ namespace BreadBuilder.Models
     {
         
     
-        oz, lb, g, kg, tbsp, tsp, cup
+        oz, g, cup
     
 
 

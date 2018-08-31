@@ -24,11 +24,13 @@ namespace BreadBuilder.Controllers
 
             IList<Ingredient> ingredients = context.Ingredients.ToList();
             IList<Measurement> measurements = context.Measurements.ToList();
+            IList<RecipeItem> recipeItems = context.RecipeItems.ToList();
 
             RemoveIngredientViewModel removeIngredientViewModel = new RemoveIngredientViewModel
             {
                 Ingredients = ingredients,
-                Measurements = measurements
+                Measurements = measurements,
+                RecipeItems = recipeItems
             };
             return View(removeIngredientViewModel);
         }
@@ -51,6 +53,18 @@ namespace BreadBuilder.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult DeleteRecipeItem(int id)
+        {
+            RecipeItem theRecipeItem = context.RecipeItems.Single(r => r.ID == id);
+            context.RecipeItems.Remove(theRecipeItem);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        /*
+         * Section For adding individual ingredients...  Needs to be deleted if not used...
         public IActionResult Add()
         {
             AddIngredientViewModel addIngredientViewModel = new AddIngredientViewModel();
@@ -104,5 +118,6 @@ namespace BreadBuilder.Controllers
             return View(addIngredientViewModel);
 
         }
+        */
     }
 }

@@ -13,6 +13,6 @@ namespace BreadBuilder.ViewModels
 
         public IList<Measurement> Measurements { get; set; }
 
-       
+        public IList<RecipeItem> RecipeItems { get; set; }
     }
 }

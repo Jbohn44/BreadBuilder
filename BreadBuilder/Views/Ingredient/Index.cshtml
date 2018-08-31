@@ -29,4 +29,18 @@
     </li>
 }
 
+<br />
+
+<h2>RecipeItems</h2>
+@foreach(var item in Model.RecipeItems)
+{ 
+    <li>
+        <ul>
+            @item.RecipeIngredient.Name
+            @item.RecipeMeasurement.Value
+            @Html.ActionLink("Delete", "DeleteRecipeItem", new { id = item.ID })
+        </ul>
+    </li>
+}
+
 <a asp-controller="Ingredient" asp-action="Index">Index</a>

@@ -7,6 +7,19 @@ namespace BreadBuilder.Models
 {
     public class Conversions
     {
+        public double HydrationLevel(double fWeight, double wWeight)
+        {
+            double percentage = ((wWeight / fWeight) * 100);
+
+            return Math.Round(percentage);
+        }
+
+        /*public double TotalWeight()
+        {
+            
+        }*/
+
+
         public double OuncesToLbs(double ounces)
         {
             double lbs = (ounces / 16);

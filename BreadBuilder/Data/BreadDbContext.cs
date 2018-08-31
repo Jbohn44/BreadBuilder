@@ -13,7 +13,7 @@ namespace BreadBuilder.Data
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<RecipeItem> RecipeItems { get; set; }
-        //public DbSet<BreadRecipeItem> BreadRecipeItems { get; set; }
+      
 
         public DbSet<Measurement> Measurements { get; set; }
 

@@ -8,7 +8,12 @@
 <hr />
 <br/>
 <h5>Hydration: @Model.Hydration %</h5>
+<hr />
 
+<h5>Convert Your Recipe</h5>
+<div>
+    @Html.ActionLink("Grams", "ConvertToGrams", new { id = Model.Bread.ID })
+</div>
 <h3><b>Ingredients</b></h3>
 <hr />
 <table class="table table-bordered">

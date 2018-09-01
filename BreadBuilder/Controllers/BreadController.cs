@@ -114,6 +114,50 @@ namespace BreadBuilder.Controllers
             return View(viewModel);
         }
 
+        public IActionResult ConvertToGrams(int id)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            double flourValue = 0;
+            double waterValue = 0;
+
+            foreach (var i in items)
+            {
+                if (i.RecipeIngredient.Name.Contains("Flour"))
+                {
+                    flourValue = i.RecipeMeasurement.Value;
+                }
+                if (i.RecipeIngredient.Name.Contains("Water"))
+                {
+                    waterValue = i.RecipeMeasurement.Value;
+                }
+            }
+
+            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+
+            double totalWeight = Conversions.TotalWeight(items);
+
+            foreach(var i in items)
+            {
+                if(i.RecipeMeasurement.Unit == MeasurementUnit.oz)
+                {
+                    i.RecipeMeasurement.Unit = MeasurementUnit.g;
+                    i.RecipeMeasurement.Value = Conversions.OuncesToGrams(i.RecipeMeasurement.Value);
+                }
+            }
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items,
+                Hydration = hydration,
+                TotalWeight = totalWeight
+            };
+
+            return View("ViewBread", viewModel);
+        }
+
         public IActionResult EditBread(int id)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();

@@ -10,7 +10,7 @@ namespace BreadBuilder.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Instructions { get; set; }
-        public User User { get; set; }
+        //public int UserID { get; set; }
 
         public List<RecipeItem> RecipeItems = new List<RecipeItem>();
 

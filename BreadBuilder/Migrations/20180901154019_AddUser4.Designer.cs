@@ -4,14 +4,16 @@ using BreadBuilder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    partial class BreadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180901154019_AddUser4")]
+    partial class AddUser4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +30,8 @@ namespace BreadBuilder.Migrations
                     b.Property<string>("Instructions");
 
                     b.Property<string>("Name");
+
+                    b.Property<int>("UserID");
 
                     b.HasKey("ID");
 

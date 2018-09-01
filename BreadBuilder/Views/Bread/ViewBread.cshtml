@@ -9,9 +9,6 @@
 <br/>
 <h5>Hydration: @Model.Hydration %</h5>
 
-<div>
-    <button value="Ounces" id="@Model.Bread.ID" asp-for>Ounces</button>       <button value="Grams" id="@Model.Bread.ID">Grams</button>       <button value="Volume">Volume</button>
-</div>
 <h3><b>Ingredients</b></h3>
 <hr />
 <table class="table table-bordered">
@@ -38,6 +35,10 @@
    }
     
 </table>
+<hr />
+
+<h5>Total Weight: @Model.TotalWeight</h5>
+
 <hr />
 
 <h3><b>Instructions</b></h3>

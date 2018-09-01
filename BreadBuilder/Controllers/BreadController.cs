@@ -98,13 +98,17 @@ namespace BreadBuilder.Controllers
                     waterValue = i.RecipeMeasurement.Value;
                 }
             }
-            double hydration = (waterValue / flourValue) * 100;
+            
+            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+
+            double totalWeight = Conversions.TotalWeight(items);
 
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
                 Items = items,
-                Hydration = hydration
+                Hydration = hydration,
+                TotalWeight = totalWeight
             };
          
             return View(viewModel);

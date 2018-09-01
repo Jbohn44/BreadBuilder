@@ -12,5 +12,7 @@ namespace BreadBuilder.ViewModels
         public IList<RecipeItem> Items { get; set; }
 
         public double Hydration { get; set; }
+
+        public double TotalWeight { get; set; }
     }
 }

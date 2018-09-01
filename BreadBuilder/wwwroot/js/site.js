@@ -2,7 +2,7 @@
 
 var counter = 0;
 var divId = 0;
-var i = 0;
+var i = 4;
 var formPopulate =
 
     '<div class="col-md-2">' +
@@ -18,8 +18,6 @@ var formPopulate =
     '<select asp-for="Measurements[' + i + '].Unit" class="dropdown">' +
     '<option value="0">oz</option>' +
     '<option value="1">g</option>' +
-    '<option value="2">tbsp</option>' +
-    '<option value="3">tsp</option>' +
     '<option value="4">cup</option>' +
     '</select> ' +
     '</div>';

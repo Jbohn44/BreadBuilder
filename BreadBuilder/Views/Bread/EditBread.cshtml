@@ -37,7 +37,7 @@
 
                             <td><input value="@Model.RecipeItems[i].RecipeMeasurement.Value" asp-for="RecipeItems[i].RecipeMeasurement.Value" /></td>
 
-                            <td>@Model.RecipeItems[i].RecipeMeasurement.Unit</td>
+                            <td><select asp-for="@Model.RecipeItems[i].RecipeMeasurement.Unit" asp-items="@Model.MeasurementUnits"></select></td>
 
 
                         </tr>

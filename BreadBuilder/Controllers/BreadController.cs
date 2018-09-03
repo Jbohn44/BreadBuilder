@@ -230,7 +230,6 @@ namespace BreadBuilder.Controllers
                 List<RecipeItem> recipeItems = editBreadViewModel.RecipeItems.ToList();
                 theBread.Name = editBreadViewModel.Name;
                 theBread.Instructions = editBreadViewModel.Instructions;
-                
                 context.Breads.Update(theBread);
                 
                 //updates the recipe item, ingredient, and measurement
@@ -238,11 +237,12 @@ namespace BreadBuilder.Controllers
                 //needs to update database entries instead of creating new entries
                 for(var i =0; i < items.Count; i++)
                 {
-                    items[i].RecipeIngredient = recipeItems[i].RecipeIngredient;
-                    items[i].RecipeMeasurement = recipeItems[i].RecipeMeasurement;
+                    items[i].RecipeIngredient.Name = recipeItems[i].RecipeIngredient.Name;
+                    items[i].RecipeMeasurement.Value = recipeItems[i].RecipeMeasurement.Value;
+                    items[i].RecipeMeasurement.Unit = recipeItems[i].RecipeMeasurement.Unit;
 
-                    context.Ingredients.Update(items[i].RecipeIngredient);
-                    context.Measurements.Update(items[i].RecipeMeasurement);
+                    //context.Ingredients.Update(items[i].RecipeIngredient);
+                    //context.Measurements.Update(items[i].RecipeMeasurement);
                     context.RecipeItems.Update(items[i]);
                 }
 

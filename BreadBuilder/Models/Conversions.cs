@@ -14,15 +14,32 @@ namespace BreadBuilder.Models
             return Math.Round(percentage);
         }
 
-        public static double TotalWeight(List<RecipeItem> items)
+        public static List<double> TotalWeights(List<RecipeItem> items)
         {
-            double total = 0;
-            foreach(var i in items)
-            {
-                total = (total + i.RecipeMeasurement.Value); 
-            }
+            List<double> totals = new List<double>();
+            double totalOz = 0;
+            double totalG = 0;
 
-            return total;
+
+            foreach (var i in items)
+            {
+                if (i.RecipeMeasurement.Unit == MeasurementUnit.oz)
+                {
+                    totalOz = (totalOz + i.RecipeMeasurement.Value);
+
+
+                }
+                else if(i.RecipeMeasurement.Unit == MeasurementUnit.g)
+                {
+                    totalG = (totalG + i.RecipeMeasurement.Value);
+                }
+
+
+            }
+            totals.Add(totalOz);
+            totals.Add(totalG);
+
+            return totals;
         }
 
 

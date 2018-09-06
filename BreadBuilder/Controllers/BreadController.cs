@@ -21,6 +21,7 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Index()
         {
+            
             //should return a list of breads... May need to be revised
             IList<Bread> breads = context.Breads.ToList();
 
@@ -101,14 +102,14 @@ namespace BreadBuilder.Controllers
             
             double hydration = Conversions.HydrationLevel(flourValue, waterValue);
 
-            double totalWeight = Conversions.TotalWeight(items);
+            List<double> totalWeights = Conversions.TotalWeights(items);
 
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
                 Items = items,
                 Hydration = hydration,
-                TotalWeight = totalWeight
+                TotalWeights = totalWeights
             };
          
             return View(viewModel);
@@ -136,7 +137,7 @@ namespace BreadBuilder.Controllers
 
             double hydration = Conversions.HydrationLevel(flourValue, waterValue);
 
-            double totalWeight = Conversions.TotalWeight(items);
+            
 
             foreach(var i in items)
             {
@@ -147,12 +148,14 @@ namespace BreadBuilder.Controllers
                 }
             }
 
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
                 Items = items,
                 Hydration = hydration,
-                TotalWeight = totalWeight
+                TotalWeights = totalWeights
             };
 
             return View("ViewBread", viewModel);
@@ -180,7 +183,7 @@ namespace BreadBuilder.Controllers
 
             double hydration = Conversions.HydrationLevel(flourValue, waterValue);
 
-            double totalWeight = Conversions.TotalWeight(items);
+            
 
             foreach (var i in items)
             {
@@ -191,12 +194,14 @@ namespace BreadBuilder.Controllers
                 }
             }
 
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
                 Items = items,
                 Hydration = hydration,
-                TotalWeight = totalWeight
+                TotalWeights = totalWeights
             };
 
             return View("ViewBread", viewModel);

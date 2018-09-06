@@ -2,38 +2,58 @@
 
 var counter = 0;
 var divId = 0;
-var i = 4;
-var formPopulate =
+var i = 5;
 
-    '<div class="col-md-2">' +
-    '<label asp-for="Ingredients[' + i + '].Name">Ingredient</label>' +
-    '<input asp-for="Ingredients[' + i + '].Name" class="form-control" />' +
-    '</div>' +
-    '<div class="col-md-1">' +
-    '<label asp-for="Measurements[' + i + '].Value">Quantity</label>' +
-    '<input asp-for="Measurements[' + i + '].Value" class="form-control" />' +
-    '</div>' +
-    '<div class="col-md-1">' +
-    '<label asp-for="Measurements[' + i + '].Unit">Unit</label>' +
-    '<select asp-for="Measurements[' + i + '].Unit" class="dropdown">' +
-    '<option value="0">oz</option>' +
-    '<option value="1">g</option>' +
-    '<option value="4">cup</option>' +
-    '</select> ' +
-    '</div>';
     
 
 
 function addInput()
 {
+    var formPopulate =
+
+        '<div class="col-md-2">' +
+        '<label asp-for="RecipeItems[' + i +'].RecipeIngredient.Name">Ingredient</label>' +
+        '<input asp-for="RecipeItems[' + i + '].RecipeIngredient.Name" class="form-control" />' +
+        '</div>' +
+        '<div class="col-md-1">' +
+        '<label asp-for="RecipeItems[' + i + '].RecipeMeasurment.Value">Quantity</label>' +
+        '<input asp-for="RecipeItems[' + i + '].RecipeMeasurment.Value" class="form-control" />' +
+        '</div>' +
+        '<div class="col-md-1">' +
+        '<label asp-for="RecipeItems[' + i + '].RecipeMeasurement.Unit">Unit</label>' +
+        '<select asp-for="RecipeItems[' + i + '].RecipeMeasurement.Unit" class="dropdown">' +
+        '<option value="0">oz</option>' +
+        '<option value="1">g</option>' +
+        '<option value="2">cup</option>' +
+        '</select> ' +
+        '</div>';
+
+    var formInput =
+        '<div class="col-md-2">' +
+        '<label for="RecipeItems[' + i + '].RecipeIngredient.Name">Ingredient</label>' +
+        '<input name="RecipeItems[' + i + '].RecipeIngredient.Name" class="form-control" />' +
+        '</div>' +
+        '<div class="col-md-1">' +
+        '<label for="RecipeItems[' + i + '].RecipeMeasurment.Value">Quantity</label>' +
+        '<input name="RecipeItems[' + i + '].RecipeMeasurment.Value" class="form-control" />' +
+        '</div>' +
+        '<div class="col-md-1">' +
+        '<label for="RecipeItems[' + i + '].RecipeMeasurement.Unit">Unit</label>' +
+        '<select name="RecipeItems[' + i + '].RecipeMeasurement.Unit" class="dropdown">' +
+        '<option value="0">oz</option>' +
+        '<option value="1">g</option>' +
+        '<option value="2">cup</option>' +
+        '</select> ' +
+        '</div>';
    
-    if (counter < 10) {
+    if (counter < 10)
+    {
         divId++;
         counter++;
         var div = document.createElement('DIV');
         div.className = "row";
         div.id = divId;
-        div.innerHTML = formPopulate;
+        div.innerHTML = formInput;
         document.getElementById("wrapper").appendChild(div);
         i++;
         

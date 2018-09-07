@@ -10,6 +10,9 @@
 
 @*TODO: ADD Client side validation*@
 <hr />
+<div>
+    <p>Click the button to add the amount of ingredients that you need</p>
+</div>
 <div class="row">
     <div class="col-sm-12">
         <button class="btn btn-default" onclick="addInput()" value="Add">Add Ingredient</button>
@@ -33,72 +36,6 @@
   
     
     <div id="wrapper">
-
-
-
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="RecipeItems[0].RecipeIngredient.Name">Ingredient</label>
-                <input asp-for="RecipeItems[0].RecipeIngredient.Name" class="form-control" />
-                
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[0].RecipeMeasurement.Value">Quantity</label>
-                <input asp-for="RecipeItems[0].RecipeMeasurement.Value" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[0].RecipeMeasurement.Unit">Unit</label>
-                <select asp-for="RecipeItems[0].RecipeMeasurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-            </div>
-            <br />
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="RecipeItems[1].RecipeIngredient.Name">Ingredient</label>
-                <input asp-for="RecipeItems[1].RecipeIngredient.Name" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[1].RecipeMeasurement.Value">Quantity</label>
-                <input asp-for="RecipeItems[1].RecipeMeasurement.Value" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[1].RecipeMeasurement.Unit">Unit</label>
-                <select asp-for="RecipeItems[1].RecipeMeasurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-            </div>
-            <br />
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="RecipeItems[2].RecipeIngredient.Name">Ingredient</label>
-                <input asp-for="RecipeItems[2].RecipeIngredient.Name" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[2].RecipeMeasurement.Value">Quantity</label>
-                <input asp-for="RecipeItems[2].RecipeMeasurement.Value" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[2].RecipeMeasurement.Unit">Unit</label>
-                <select asp-for="RecipeItems[2].RecipeMeasurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-            </div>
-            <br />
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="RecipeItems[3].RecipeIngredient.Name">Ingredient</label>
-                <input asp-for="RecipeItems[3].RecipeIngredient.Name" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[3].RecipeMeasurement.Value">Quantity</label>
-                <input asp-for="RecipeItems[3].RecipeMeasurement.Value" class="form-control" />
-            </div>
-            <div class="col-md-1">
-                <label asp-for="RecipeItems[3].RecipeMeasurement.Unit">Unit</label>
-                <select asp-for="RecipeItems[3].RecipeMeasurement.Unit" asp-items="Model.MeasurementUnits" class="dropdown"></select>
-            </div>
-            <br />
-        </div>
-
-
 
     </div>
 

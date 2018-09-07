@@ -2,31 +2,14 @@
 
 var counter = 0;
 var divId = 0;
-var i = 5;
+var i = 0;
 
     
 
 
 function addInput()
 {
-    var formPopulate =
-
-        '<div class="col-md-2">' +
-        '<label asp-for="RecipeItems[' + i +'].RecipeIngredient.Name">Ingredient</label>' +
-        '<input asp-for="RecipeItems[' + i + '].RecipeIngredient.Name" class="form-control" />' +
-        '</div>' +
-        '<div class="col-md-1">' +
-        '<label asp-for="RecipeItems[' + i + '].RecipeMeasurment.Value">Quantity</label>' +
-        '<input asp-for="RecipeItems[' + i + '].RecipeMeasurment.Value" class="form-control" />' +
-        '</div>' +
-        '<div class="col-md-1">' +
-        '<label asp-for="RecipeItems[' + i + '].RecipeMeasurement.Unit">Unit</label>' +
-        '<select asp-for="RecipeItems[' + i + '].RecipeMeasurement.Unit" class="dropdown">' +
-        '<option value="0">oz</option>' +
-        '<option value="1">g</option>' +
-        '<option value="2">cup</option>' +
-        '</select> ' +
-        '</div>';
+    
 
     var formInput =
         '<div class="col-md-2">' +
@@ -34,8 +17,8 @@ function addInput()
         '<input name="RecipeItems[' + i + '].RecipeIngredient.Name" class="form-control" />' +
         '</div>' +
         '<div class="col-md-1">' +
-        '<label for="RecipeItems[' + i + '].RecipeMeasurment.Value">Quantity</label>' +
-        '<input name="RecipeItems[' + i + '].RecipeMeasurment.Value" class="form-control" />' +
+        '<label for="RecipeItems[' + i + '].RecipeMeasurement.Value">Quantity</label>' +
+        '<input name="RecipeItems[' + i + '].RecipeMeasurement.Value" class="form-control" />' +
         '</div>' +
         '<div class="col-md-1">' +
         '<label for="RecipeItems[' + i + '].RecipeMeasurement.Unit">Unit</label>' +

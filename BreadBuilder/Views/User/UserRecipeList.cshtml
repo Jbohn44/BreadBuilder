@@ -12,15 +12,15 @@
      {
 
 
-            <div class="jumbotron">
-               <a asp-controller="Bread" asp-action="ViewBread" asp-route-id="@item.ID"><div class="container text-center">@item.Name</div></a>
-            </div> 
-            <br />
+            
+               <a asp-controller="Bread" asp-action="ViewBread" asp-route-id="@item.ID" class="btn btn-primary btn-block">@item.Name</a>
+            
+            
                
      }
 
 
 <br />
 <p>
-    <a asp-controller="Bread" asp-action="Add">Add Bread</a>
+    <a asp-controller="Bread" asp-action="Add" class="btn btn-block btn-warning">Add Bread</a>
 </p>

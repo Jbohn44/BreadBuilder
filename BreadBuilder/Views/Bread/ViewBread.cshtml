@@ -12,8 +12,8 @@
 
 <h3>Convert Your Recipe</h3>
 <div>
-    @Html.ActionLink("Grams", "ConvertToGrams", new { id = Model.Bread.ID }, new { @class="btn btn-default" })
-    @Html.ActionLink("Ounces", "ConvertToOunces", new { id = Model.Bread.ID}, new { @class="btn btn-default" })
+    @Html.ActionLink("Grams", "ConvertToGrams", new { id = Model.Bread.ID }, new { @class="btn btn-primary" })
+    @Html.ActionLink("Ounces", "ConvertToOunces", new { id = Model.Bread.ID}, new { @class="btn btn-primary" })
 </div>
 <h3><b>Ingredients</b></h3>
 <hr />
@@ -61,6 +61,6 @@
 <p>@Model.Bread.Instructions</p>
 
 <div>
-    @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID  }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID  }, new {@class="btn btn-primary" }) |
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>

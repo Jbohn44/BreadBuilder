@@ -13,12 +13,14 @@
 <div>
     <p>Click the button to add the amount of ingredients that you need</p>
 </div>
+<br />
 <div class="row">
-    <div class="col-sm-12">
-        <button class="btn btn-default" onclick="addInput()" value="Add">Add Ingredient</button>
-    
-        <button class="btn btn-default" onclick="removeInput()" value="Remove">Remove Ingredient</button>
-    </div>
+    <div class="col-md-9">
+        <div class="btn-group btn-group-lg" role="group" aria-label="Ingredient Controls">
+            <button type="button" onclick="addInput()" class="btn btn-secondary">+</button>
+            <button type="button" onclick="removeInput()" class="btn btn-secondary">-</button>
+        </div>
+   </div>
 </div>
 <br/>
 <br/>
@@ -48,8 +50,9 @@
             <span asp-validation-for="Instructions" class="text-danger"></span>
         </div>
     </div>
+    <br />
     <div class="form-group">
-        <input type="submit" asp-action="Add" value="Build" class="btn btn-default" />
+        <input type="submit" asp-action="Add" value="Build" class="btn btn-success" />
     </div>
 </form>
  

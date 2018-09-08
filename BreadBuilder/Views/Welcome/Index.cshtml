@@ -2,29 +2,26 @@
 @{
     ViewData["Title"] = "Welcome";
 }
+<br />
+<br />
 <div class="container">
-    <div class="text-center">
-        <h1>Welcome To Bread Builder!</h1>
-    </div>
-    <div class="text-center">
-        <img src="~/images/bread logo.png" height="250" width="400" />
-    </div>
-<br />
-<br />
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Welcome to Bread Builder</h1>
+            <hr />
+            <p class="lead">A place where you can create, save, and edit all your bread formulas</p>
+            <div class="text-left">
+                <button asp-controller="Bread" asp-action="Add" class="btn btn-lg btn-primary">Build Bread</button>
+            </div>
+            <br />
+            <div class="text-left">
+                <button asp-controller="User" asp-action="Add" class="btn btn-lg btn-primary">Add Profile</button>
+            </div>
 
-        <p class="text-center">Bread Builder is a place where you can
-        create, store, and edit all your
-        bread formulas!</p>
-<br />
-<br />
-    <div class="text-center">
-        <a asp-controller="Bread" asp-action="Add">Click here to start building bread</a>
-    </div>
-    <div>
-        <h5 class="text-center">OR</h5>
-    </div>
-    <div class="text-center">
-        <a asp-controller="User" asp-action="Add">Click here to add a profile</a>
+        </div>
+        </div>
     </div>
 
-</div>
+
+        
+

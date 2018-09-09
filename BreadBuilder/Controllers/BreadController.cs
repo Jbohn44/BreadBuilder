@@ -277,6 +277,8 @@ namespace BreadBuilder.Controllers
 
             foreach(var item in items)
             {
+                context.Ingredients.Remove(item.RecipeIngredient);
+                context.Measurements.Remove(item.RecipeMeasurement);
                 context.RecipeItems.Remove(item);
             }
             context.Breads.Remove(theBread);

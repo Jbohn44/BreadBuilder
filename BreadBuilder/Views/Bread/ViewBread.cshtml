@@ -62,5 +62,5 @@
 
 <div>
     @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID  }, new {@class="btn btn-primary" }) |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    <a asp-controller="User" asp-action="UserRecipeList" class="btn btn-primary">Back to List</a>
 </div>

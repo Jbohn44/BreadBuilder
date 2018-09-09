@@ -43,6 +43,7 @@ namespace BreadBuilder.Controllers
 
                 context.Users.Add(newUser);
                 context.SaveChanges();
+                
 
                 return RedirectToAction("UserRecipeList");
             }

@@ -51,14 +51,14 @@
                 <textarea rows="20" cols="50" asp-for="Instructions">@Model.Instructions</textarea>
                 @Html.HiddenFor(Model => Model.ID)
 
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-primary btn-lg">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
 <div>
     @Html.ActionLink("Delete", "Delete", "Bread", new { id = Model.ID }, new { @class="btn btn-primary" })

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using BreadBuilder.Data;
 using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
 
 namespace BreadBuilder.Controllers
 {
@@ -43,6 +45,7 @@ namespace BreadBuilder.Controllers
 
                 context.Users.Add(newUser);
                 context.SaveChanges();
+
                 
 
                 return RedirectToAction("UserRecipeList");

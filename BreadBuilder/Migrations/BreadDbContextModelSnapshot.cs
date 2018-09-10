@@ -25,6 +25,10 @@ namespace BreadBuilder.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BakeTemp");
+
+                    b.Property<double>("BakeTime");
+
                     b.Property<string>("Instructions");
 
                     b.Property<string>("Name");

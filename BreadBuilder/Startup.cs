@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using BreadBuilder.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Session;
 
 namespace BreadBuilder
 {
@@ -26,7 +28,12 @@ namespace BreadBuilder
             services.AddDbContext<BreadDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvc();
+
+
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,9 +47,13 @@ namespace BreadBuilder
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                
             }
 
             app.UseStaticFiles();
+
+            app.UseSession();
+            
 
             app.UseMvc(routes =>
             {
@@ -51,5 +62,7 @@ namespace BreadBuilder
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

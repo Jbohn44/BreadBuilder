@@ -2,7 +2,7 @@
 
 namespace BreadBuilder.Migrations
 {
-    public partial class AddUser3 : Migration
+    public partial class AddBreadTemp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

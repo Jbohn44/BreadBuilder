@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    [Migration("20180825185017_initialMigration")]
-    partial class initialMigration
+    [Migration("20180910185745_AddBreadTemp")]
+    partial class AddBreadTemp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,10 @@ namespace BreadBuilder.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BakeTemp");
+
+                    b.Property<double>("BakeTime");
 
                     b.Property<string>("Instructions");
 
@@ -57,7 +61,7 @@ namespace BreadBuilder.Migrations
 
                     b.Property<int>("Unit");
 
-                    b.Property<int>("Value");
+                    b.Property<double>("Value");
 
                     b.HasKey("ID");
 

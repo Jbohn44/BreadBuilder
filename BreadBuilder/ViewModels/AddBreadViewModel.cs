@@ -17,6 +17,14 @@ namespace BreadBuilder.ViewModels
         [Required]
         [Display(Name = "Instructions")]
         public string Instructions { get; set; }
+
+        [Required]
+        [Display(Name = "Bake Temp in Fahrenheit")]
+        public int BakeTemp { get; set; }
+
+        [Required]
+        [Display(Name = "Bake Time in Minutes")]
+        public double BakeTime { get; set; }
         
         
         public IList<RecipeItem> RecipeItems { get; set; }

@@ -7,6 +7,7 @@ using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Session;
 
 namespace BreadBuilder.Controllers
 {
@@ -31,6 +32,7 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Add()
         {
+            
             //passes a list of already added ingredients to the bread creation page
             
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
@@ -51,6 +53,8 @@ namespace BreadBuilder.Controllers
                 {
                     Name = addBreadViewModel.Name,
                     Instructions = addBreadViewModel.Instructions,
+                    BakeTemp = addBreadViewModel.BakeTemp,
+                    BakeTime = addBreadViewModel.BakeTime,
                     RecipeItems = addBreadViewModel.RecipeItems.ToList()
                 };
 

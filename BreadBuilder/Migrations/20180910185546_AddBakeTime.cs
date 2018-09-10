@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BreadBuilder.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class AddBakeTime : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,9 @@ namespace BreadBuilder.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    Instructions = table.Column<string>(nullable: true)
+                    Instructions = table.Column<string>(nullable: true),
+                    BakeTime = table.Column<double>(nullable: false),
+                    BakeTemp = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +42,7 @@ namespace BreadBuilder.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Value = table.Column<int>(nullable: false),
+                    Value = table.Column<double>(nullable: false),
                     Unit = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

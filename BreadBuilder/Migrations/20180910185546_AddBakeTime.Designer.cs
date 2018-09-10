@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreadBuilder.Migrations
 {
     [DbContext(typeof(BreadDbContext))]
-    [Migration("20180831221842_AddUser3")]
-    partial class AddUser3
+    [Migration("20180910185546_AddBakeTime")]
+    partial class AddBakeTime
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,15 +27,15 @@ namespace BreadBuilder.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BakeTemp");
+
+                    b.Property<double>("BakeTime");
+
                     b.Property<string>("Instructions");
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("UserID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Breads");
                 });
@@ -104,13 +104,6 @@ namespace BreadBuilder.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BreadBuilder.Models.Bread", b =>
-                {
-                    b.HasOne("BreadBuilder.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("BreadBuilder.Models.RecipeItem", b =>

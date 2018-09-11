@@ -26,7 +26,7 @@
                         <th>Value</th>
                         <th>Unit</th>
                     </tr>
-                    
+
                     @for (var i = 0; i < Model.RecipeItems.Count; i++)
                     {
 
@@ -46,6 +46,22 @@
 
                 </table>
                 <hr />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="BakeTime" class="control-label"></label>
+                        <input asp-for="BakeTime" class="form-control" value="@Model.BakeTime" />
+                        <span asp-validation-for="BakeTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="BakeTemp" class="control-label"></label>
+                        <input asp-for="BakeTemp" class="form-control" value="@Model.BakeTemp" />
+                        <span asp-validation-for="BakeTemp" class="text-danger"></span>
+                    </div>
+                </div>
 
                 <h3><b>Instructions</b></h3>
                 <textarea rows="20" cols="50" asp-for="Instructions">@Model.Instructions</textarea>

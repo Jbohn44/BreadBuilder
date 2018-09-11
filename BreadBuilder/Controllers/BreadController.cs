@@ -20,20 +20,12 @@ namespace BreadBuilder.Controllers
             context = dbContext;
         }
 
-        public IActionResult Index()
-        {
-            
-            
-            //should return a list of breads... May need to be revised
-            IList<Bread> breads = context.Breads.ToList();
-
-            return View(breads);
-        }
+    
 
         public IActionResult Add()
         {
             
-            //passes a list of already added ingredients to the bread creation page
+            
             
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
             
@@ -45,6 +37,7 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+                int userId = Convert.ToInt32(TempData["UserId"].ToString());
                 //holds the list of recipe items from viewmodel
                 List<RecipeItem> RecipeItemList = new List<RecipeItem>();
 
@@ -55,7 +48,9 @@ namespace BreadBuilder.Controllers
                     Instructions = addBreadViewModel.Instructions,
                     BakeTemp = addBreadViewModel.BakeTemp,
                     BakeTime = addBreadViewModel.BakeTime,
+                    UserID = userId,
                     RecipeItems = addBreadViewModel.RecipeItems.ToList()
+                    
                 };
 
                 context.Breads.Add(newBread);
@@ -73,10 +68,11 @@ namespace BreadBuilder.Controllers
                     context.RecipeItems.Add(newRecipeItem);
                     context.SaveChanges();
                     RecipeItemList.Add(newRecipeItem);
-                } 
-               
-                
+                }
 
+
+                TempData["UserId"] = userId;
+                TempData.Keep();
 
                 return RedirectToAction($"/ViewBread/{newBread.ID}");
             }
@@ -116,6 +112,8 @@ namespace BreadBuilder.Controllers
                 Hydration = hydration,
                 TotalWeights = totalWeights
             };
+
+            TempData.Keep();
          
             return View(viewModel);
         }
@@ -163,6 +161,8 @@ namespace BreadBuilder.Controllers
                 TotalWeights = totalWeights
             };
 
+            TempData.Keep();
+
             return View("ViewBread", viewModel);
         }
 
@@ -209,6 +209,8 @@ namespace BreadBuilder.Controllers
                 TotalWeights = totalWeights
             };
 
+            TempData.Keep();
+
             return View("ViewBread", viewModel);
         }
 
@@ -222,8 +224,12 @@ namespace BreadBuilder.Controllers
                 ID = theBread.ID,
                 Name = theBread.Name,
                 RecipeItems = items,
-                Instructions = theBread.Instructions
+                Instructions = theBread.Instructions,
+                BakeTime = theBread.BakeTime,
+                BakeTemp = theBread.BakeTemp
             };
+
+            TempData.Keep();
 
             return View(viewModel);
 
@@ -240,6 +246,8 @@ namespace BreadBuilder.Controllers
                 List<RecipeItem> recipeItems = editBreadViewModel.RecipeItems.ToList();
                 theBread.Name = editBreadViewModel.Name;
                 theBread.Instructions = editBreadViewModel.Instructions;
+                theBread.BakeTemp = editBreadViewModel.BakeTemp;
+                theBread.BakeTime = editBreadViewModel.BakeTime;
                 context.Breads.Update(theBread);
                 
                 //updates the recipe item, ingredient, and measurement
@@ -258,9 +266,9 @@ namespace BreadBuilder.Controllers
 
                 context.SaveChanges();
 
-              
 
 
+                TempData.Keep();
 
                 return RedirectToAction($"/ViewBread/{editBreadViewModel.ID}");
             }

@@ -31,7 +31,8 @@ namespace BreadBuilder
             
             services.AddDistributedMemoryCache();
             services.AddSession();
-            services.AddMvc();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
 
 
         }

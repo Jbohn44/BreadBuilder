@@ -20,6 +20,15 @@ namespace BreadBuilder.ViewModels
 
         public int ID { get; set; }
 
+        [Required]
+        [Display(Name = "Bake Temp in Fahrenheit")]
+        public int BakeTemp { get; set; }
+
+        [Required]
+        [Display(Name = "Bake Time in Minutes")]
+        public double BakeTime { get; set; }
+
+
         public IList<RecipeItem> RecipeItems { get; set; }
 
         public List<SelectListItem> MeasurementUnits { get; set; }

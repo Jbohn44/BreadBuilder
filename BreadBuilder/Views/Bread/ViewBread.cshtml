@@ -64,7 +64,13 @@
 <hr />
 <h3><b>Instructions</b></h3>
 <p>@Model.Bread.Instructions</p>
-
+<br />
+<br />
+<div>
+    @Html.ActionLink("Weather Conditions", "Index", "Weather", new { id = Model.Bread.ID }, new {@class="btn btn-lg btn-success" })
+</div>
+<br />
+<br />
 <div>
     @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID  }, new {@class="btn btn-primary" }) |
     <a asp-controller="User" asp-action="UserRecipeList" class="btn btn-primary">Back to List</a>

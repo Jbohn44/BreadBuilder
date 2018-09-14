@@ -114,7 +114,7 @@ namespace BreadBuilder.Controllers
             };
 
             TempData.Keep();
-         
+            
             return View(viewModel);
         }
 
@@ -259,8 +259,7 @@ namespace BreadBuilder.Controllers
                     items[i].RecipeMeasurement.Value = recipeItems[i].RecipeMeasurement.Value;
                     items[i].RecipeMeasurement.Unit = recipeItems[i].RecipeMeasurement.Unit;
 
-                    //context.Ingredients.Update(items[i].RecipeIngredient);
-                    //context.Measurements.Update(items[i].RecipeMeasurement);
+                  
                     context.RecipeItems.Update(items[i]);
                 }
 

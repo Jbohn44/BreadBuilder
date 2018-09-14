@@ -71,7 +71,7 @@ namespace BreadBuilder.Controllers
                 TempData["UserId"] = user.ID;
                 TempData.Keep();
 
-                return RedirectToAction("Add", "Bread");
+                return RedirectToAction("UserRecipeList", "User");
             }
             return View(loginViewModel);
         }
@@ -94,6 +94,13 @@ namespace BreadBuilder.Controllers
             {
                 return RedirectToAction("Add", "User");
             }
+        }
+
+        public IActionResult Logout()
+        {
+            TempData.Clear();
+
+            return RedirectToAction("Login");
         }
     }
 }

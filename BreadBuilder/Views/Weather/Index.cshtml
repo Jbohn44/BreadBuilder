@@ -1,0 +1,15 @@
+﻿@model BreadBuilder.ViewModels.BreadWeatherViewModel
+@{
+    ViewData["Title"] = "Weather";
+}
+
+<h2>Please Enter Your Location</h2>
+
+<form>
+    <input type="hidden" asp-for="@Model.BreadId" value="@Model.BreadId" />
+
+    <input asp-for="City" />
+    <input type="submit" asp-action="City" class="btn btn-primary"/>
+    
+
+</form>

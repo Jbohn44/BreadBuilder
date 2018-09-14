@@ -19,11 +19,6 @@ namespace BreadBuilder.ViewModels
         [MaxLength(25)]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
-        [Required(ErrorMessage = "Please Confirm Password")]
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
 
     }
 }

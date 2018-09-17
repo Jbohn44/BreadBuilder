@@ -8,6 +8,7 @@ using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace BreadBuilder.Controllers
@@ -38,7 +39,11 @@ namespace BreadBuilder.Controllers
         [HttpGet]
         public async Task<IActionResult> City(BreadWeatherViewModel breadWeatherViewModel)
         {
+            int id = breadWeatherViewModel.BreadId;
             string city = breadWeatherViewModel.City;
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+
             using (var client = new HttpClient())
             {
                 try
@@ -50,15 +55,48 @@ namespace BreadBuilder.Controllers
                     var stringResult = await response.Content.ReadAsStringAsync();
                     var rawWeather = JsonConvert.DeserializeObject<OpenWeatherResponse>(stringResult);
 
+                    double dewPoint = Conversions.DewPoint(rawWeather.Main.Temp, rawWeather.Main.Humidity);
+
+                    double flourValue = 0;
+                    double waterValue = 0;
+
+                    foreach (var i in items)
+                    {
+                        if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
+                        {
+                            flourValue = i.RecipeMeasurement.Value;
+                        }
+                        if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                        {
+                            waterValue = i.RecipeMeasurement.Value;
+                        }
+                    }
+
+                    double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+
+                    List<double> totalWeights = Conversions.TotalWeights(items);
+
                     WeatherViewModel weatherViewModel = new WeatherViewModel
                     {
                         City = rawWeather.Name,
                         Temp = rawWeather.Main.Temp,
                         Humidity = rawWeather.Main.Humidity,
-                        BreadID = breadWeatherViewModel.BreadId
+                        BreadID = breadWeatherViewModel.BreadId,
+                        DewPoint = dewPoint,
+                        Bread = theBread,
+                        Items = items,
+                        Hydration = hydration,
+                        TotalWeights = totalWeights
+
                     };
 
+                    TempData.Keep();
+
                     return View("ViewWeather", weatherViewModel);
+
+
+
+
                    /* return Ok(new
                     {
                         Temp = rawWeather.Main.Temp,

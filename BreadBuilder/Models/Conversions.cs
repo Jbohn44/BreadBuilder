@@ -112,5 +112,51 @@ namespace BreadBuilder.Models
 
             return tbsp;
         }
+
+        public static double DewPoint(string temp, string humidity)
+        {
+            double tempInF = Convert.ToDouble(temp);
+            double humidPerc = Convert.ToDouble(humidity);
+            double tempInC = ((tempInF - 32) / 1.8);
+            double c1;
+            double c2;
+            double c3;
+            double dewPoint;
+            double relHum;
+            double relHumInPer = humidPerc / 100;
+            double sWVP;
+            double pWVP;
+            if(tempInC < 0.0)
+            {
+                c1 = 6.10780;
+                c2 = 17.84362;
+                c3 = 245.425;
+
+                relHum = relHumInPer / 1;
+
+                sWVP = c1 * Math.Exp((c2 * tempInC) / (c3 + tempInC));
+                pWVP = (sWVP * relHum);
+
+                dewPoint = (-Math.Log(pWVP / c1) * c3) / (Math.Log(pWVP / c1) - c2);
+                dewPoint = Math.Round((dewPoint * 1.8) + 32);
+            }
+            else
+            {
+                c1 = 610780;
+                c2 = 17.08085;
+                c3 = 234.175;
+
+                relHum = relHumInPer / 1;
+
+                sWVP = c1 * Math.Exp((c2 * tempInC) / (c3 + tempInC));
+                pWVP = (sWVP * relHum);
+
+                dewPoint = (-Math.Log(pWVP / c1) * c3) / (Math.Log(pWVP / c1) - c2);
+                dewPoint = Math.Round((dewPoint * 1.8) + 32);
+
+            }
+
+            return dewPoint;
+        }
     }
 }

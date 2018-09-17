@@ -91,11 +91,11 @@ namespace BreadBuilder.Controllers
             
             foreach(var i in items)
             {
-                if (i.RecipeIngredient.Name.Contains("Flour"))
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     flourValue = i.RecipeMeasurement.Value;
                 }
-                if (i.RecipeIngredient.Name.Contains("Water"))
+                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     waterValue = i.RecipeMeasurement.Value;
                 }
@@ -126,13 +126,14 @@ namespace BreadBuilder.Controllers
             double flourValue = 0;
             double waterValue = 0;
 
+            //checks to see if name of ingredient is in Lists of keywords...
             foreach (var i in items)
             {
-                if (i.RecipeIngredient.Name.Contains("Flour"))
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     flourValue = i.RecipeMeasurement.Value;
                 }
-                if (i.RecipeIngredient.Name.Contains("Water"))
+                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     waterValue = i.RecipeMeasurement.Value;
                 }
@@ -174,13 +175,14 @@ namespace BreadBuilder.Controllers
             double flourValue = 0;
             double waterValue = 0;
 
+            //checks to see if name of ingredient is contained in lists of keywords
             foreach (var i in items)
             {
-                if (i.RecipeIngredient.Name.Contains("Flour"))
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     flourValue = i.RecipeMeasurement.Value;
                 }
-                if (i.RecipeIngredient.Name.Contains("Water"))
+                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
                     waterValue = i.RecipeMeasurement.Value;
                 }

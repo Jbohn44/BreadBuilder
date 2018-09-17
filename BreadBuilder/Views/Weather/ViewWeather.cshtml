@@ -30,11 +30,93 @@
     </dl>
 </div>
 <div>
+    @Html.DisplayNameFor(model => model.DewPoint)
+</div>
+<div>
+    @Html.DisplayFor(model => model.DewPoint)
+</div>
+<div>
     @Html.DisplayNameFor(model => model.BreadID)
 </div>
 <div>
     @Html.DisplayFor(model => model.BreadID)
 </div>
+
+
+<h2>@Model.Bread.Name</h2>
+<hr />
+<br />
+<h5>Hydration: @Model.Hydration %</h5>
+<hr />
+
+<h3>Convert Your Recipe</h3>
+<div>
+    @Html.ActionLink("Grams", "ConvertToGrams", "Bread", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Ounces", "ConvertToOunces", "Bread", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" })
+</div>
+<h3><b>Ingredients</b></h3>
+<hr />
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Unit</th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+
+        <tr>
+
+
+            <td>@item.RecipeIngredient.Name</td>
+
+            <td>@item.RecipeMeasurement.Value</td>
+
+            <td>@item.RecipeMeasurement.Unit</td>
+
+
+        </tr>
+
+    }
+
+</table>
+<hr />
+
+<h5>Totals:</h5>
+<div>
+    <ul>
+        @Model.TotalWeights[0] Oz
+    </ul>
+    <ul>
+        @Model.TotalWeights[1] G
+    </ul>
+</div>
+
+
+
+<hr />
+<h3><b>Bake Time</b></h3>
+<p>@Model.Bread.BakeTime minutes</p>
+<hr />
+<h3><b>Bake Temp</b></h3>
+<p>@Model.Bread.BakeTemp F</p>
+<hr />
+<h3><b>Instructions</b></h3>
+<p>@Model.Bread.Instructions</p>
+<br />
+<br />
+<div>
+    @Html.ActionLink("Weather Conditions", "Index", "Weather", new { id = Model.Bread.ID }, new { @class = "btn btn-lg btn-success" })
+</div>
+<br />
+<br />
+<div>
+    @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" }) |
+    <a asp-controller="User" asp-action="UserRecipeList" class="btn btn-primary">Back to List</a>
+</div>
+
+
+
 <div>
 
     @Html.ActionLink("New City", "Index", new { id = Model.BreadID }, new { @class = "btn btn-primary" })

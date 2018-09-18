@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BreadBuilder.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -157,6 +158,98 @@ namespace BreadBuilder.Models
             }
 
             return dewPoint;
+        }
+
+        public static WeatherViewModel WeatherAdjustment(WeatherViewModel weatherViewModel)
+        {
+            Double dewPoint = weatherViewModel.DewPoint;
+            List<RecipeItem> items = weatherViewModel.Items.ToList();
+
+           if(dewPoint <= 20)
+            {
+                foreach(var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .15);
+                    }
+                }
+            }
+           else if(dewPoint >= 21 && dewPoint <= 40)
+            {
+                foreach (var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .10);
+                    }
+                }
+            }
+           else if(dewPoint >= 61 && dewPoint <= 70)
+            {
+                foreach (var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .10);
+                    }
+                }
+            }
+           else if(dewPoint >= 71 && dewPoint <= 80)
+            {
+                foreach (var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .15);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .20);
+                    }
+                }
+            }
+
+
+            double flourValue = 0;
+            double waterValue = 0;
+
+            foreach (var i in items)
+            {
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
+                {
+                    flourValue = i.RecipeMeasurement.Value;
+                }
+                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                {
+                    waterValue = i.RecipeMeasurement.Value;
+                }
+            }
+
+            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
+            WeatherViewModel viewModel = new WeatherViewModel
+            {
+                City = weatherViewModel.City,
+                Temp = weatherViewModel.Temp,
+                Humidity = weatherViewModel.Humidity,
+                DewPoint = weatherViewModel.DewPoint,
+                BreadID = weatherViewModel.BreadID,
+                Bread = weatherViewModel.Bread,
+                Items = items,
+                Hydration = hydration,
+                TotalWeights = totalWeights
+
+            };
+            return viewModel;
         }
     }
 }

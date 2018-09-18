@@ -7,6 +7,7 @@ using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,27 +35,49 @@ namespace BreadBuilder.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Add(AddUserViewModel addUserViewModel)
         {
             if (ModelState.IsValid)
             {
-                User newUser = new User
+                IList<User> existingUsers = context.Users.ToList();
+                IList<String> existingUserNames = new List<String>();
+
+
+                //loop through existing users and adds name to list...
+                foreach(var user in existingUsers)
                 {
-                    Name = addUserViewModel.Username,
-                    Password = addUserViewModel.Password
-                };
+                    existingUserNames.Add(user.Name);
+                }
+                if (existingUserNames.Contains(addUserViewModel.Username))
+                {
+                    ModelState.AddModelError("Username", "Username already exists");
+                    return View(addUserViewModel);
+                }
+                else
+                {
 
-                context.Users.Add(newUser);
-                context.SaveChanges();
 
-                TempData["UserID"] = newUser.ID;
-                TempData.Keep();
-                
-                return RedirectToAction($"UserRecipeList/{newUser.ID}");
+                    User newUser = new User
+                    {
+                        Name = addUserViewModel.Username,
+                        Password = addUserViewModel.Password
+                    };
+
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+
+                    TempData["UserID"] = newUser.ID;
+                    TempData.Keep();
+
+                    return RedirectToAction($"UserRecipeList/{newUser.ID}");
+
+                }
             }
             return View(addUserViewModel);
         }
 
+        
         public IActionResult Login()
         {
 
@@ -63,15 +86,26 @@ namespace BreadBuilder.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)
             {
-                User user = context.Users.Single(u => u.Name == loginViewModel.Username);
-                TempData["UserId"] = user.ID;
-                TempData.Keep();
 
-                return RedirectToAction("UserRecipeList", "User");
+                User user = context.Users.Single(u => u.Name == loginViewModel.Username);
+                if (user.Password == loginViewModel.Password)
+                {
+
+                    TempData["UserId"] = user.ID;
+                    TempData.Keep();
+
+                    return RedirectToAction($"UserRecipeList/{user.ID}", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("Password", "Invalid Password or Username");
+                    return View(loginViewModel);
+                }
             }
             return View(loginViewModel);
         }

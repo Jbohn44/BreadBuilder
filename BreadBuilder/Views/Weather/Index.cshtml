@@ -2,14 +2,19 @@
 @{
     ViewData["Title"] = "Weather";
 }
+<br />
+<div class="jumbotron">
+    <h2>Weather Condition Adjustments</h2>
+    <hr />
+    <p>When the Weather is extremely humid or dry, bread recipes
+       often need to be adjusted to compensate for the abundance
+       or lack of moisture.  Search the city you are in and your 
+       recipe will be adjusted according to the weather.</p>
+    <hr />
+    <form>
+        <input type="hidden" asp-for="@Model.BreadId" value="@Model.BreadId" />
 
-<h2>Please Enter Your Location</h2>
-
-<form>
-    <input type="hidden" asp-for="@Model.BreadId" value="@Model.BreadId" />
-
-    <input asp-for="City" />
-    <input type="submit" asp-action="City" class="btn btn-primary"/>
-    
-
-</form>
+        <input asp-for="City" />
+        <input type="submit" asp-action="City" class="btn btn-primary" value="Submit Your City" />
+    </form>
+</div>

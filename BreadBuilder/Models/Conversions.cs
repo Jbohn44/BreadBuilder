@@ -171,7 +171,10 @@ namespace BreadBuilder.Models
                 {
                     if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                     {
-                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .15);
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .10);
+                        weatherViewModel.AdjustedLiquid = i.RecipeIngredient.Name;
+                        weatherViewModel.AdjustmentMessage = $"was added to {i.RecipeIngredient.Name} weight.";
+                        weatherViewModel.AdjustmentPercent = "10 % ";
                     }
                 }
             }
@@ -181,7 +184,21 @@ namespace BreadBuilder.Models
                 {
                     if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                     {
-                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .10);
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) + (i.RecipeMeasurement.Value * .05);
+                        weatherViewModel.AdjustedLiquid = i.RecipeIngredient.Name;
+                        weatherViewModel.AdjustmentMessage = $"was added to {i.RecipeIngredient.Name} weight.";
+                        weatherViewModel.AdjustmentPercent = "5 % ";
+                    }
+                }
+            }
+           else if(dewPoint >= 41 && dewPoint <= 60)
+            {
+                foreach (var i in items)
+                {
+                    if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                    {
+                        i.RecipeMeasurement.Value = i.RecipeMeasurement.Value;
+                        weatherViewModel.AdjustmentMessage = "No adjustments made.";
                     }
                 }
             }
@@ -191,7 +208,10 @@ namespace BreadBuilder.Models
                 {
                     if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                     {
-                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .10);
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .05);
+                        weatherViewModel.AdjustedLiquid = i.RecipeIngredient.Name;
+                        weatherViewModel.AdjustmentMessage = $"was subtracted from {i.RecipeIngredient.Name} weight.";
+                        weatherViewModel.AdjustmentPercent = "5 % ";
                     }
                 }
             }
@@ -201,7 +221,10 @@ namespace BreadBuilder.Models
                 {
                     if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                     {
-                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .15);
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .10);
+                        weatherViewModel.AdjustedLiquid = i.RecipeIngredient.Name;
+                        weatherViewModel.AdjustmentMessage = $"was subtracted from {i.RecipeIngredient.Name} weight.";
+                        weatherViewModel.AdjustmentPercent = "10 % ";
                     }
                 }
             }
@@ -211,7 +234,10 @@ namespace BreadBuilder.Models
                 {
                     if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                     {
-                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .20);
+                        i.RecipeMeasurement.Value = (i.RecipeMeasurement.Value) - (i.RecipeMeasurement.Value * .15);
+                        weatherViewModel.AdjustedLiquid = i.RecipeIngredient.Name;
+                        weatherViewModel.AdjustmentMessage = $"was subtracted from {i.RecipeIngredient.Name} weight.";
+                        weatherViewModel.AdjustmentPercent = "15 % ";
                     }
                 }
             }
@@ -246,7 +272,10 @@ namespace BreadBuilder.Models
                 Bread = weatherViewModel.Bread,
                 Items = items,
                 Hydration = hydration,
-                TotalWeights = totalWeights
+                TotalWeights = totalWeights,
+                AdjustedLiquid = weatherViewModel.AdjustedLiquid,
+                AdjustmentMessage = weatherViewModel.AdjustmentMessage,
+                AdjustmentPercent = weatherViewModel.AdjustmentPercent
 
             };
             return viewModel;

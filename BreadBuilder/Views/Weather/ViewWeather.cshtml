@@ -44,6 +44,9 @@
 <br />
 <h5>Hydration: @Model.Hydration %</h5>
 <hr />
+<div class="container-fluid bg-warning">
+    <p>@Model.AdjustmentPercent @Model.AdjustmentMessage</p>
+</div>
 
 <h3>Convert Your Recipe</h3>
 <div>
@@ -104,7 +107,6 @@
 <br />
 <br />
 <div>
-    @Html.ActionLink("Edit", "EditBread", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" }) |
     <a asp-controller="User" asp-action="UserRecipeList" class="btn btn-primary">Back to List</a>
 </div>
 <br />

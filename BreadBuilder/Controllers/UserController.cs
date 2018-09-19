@@ -126,7 +126,7 @@ namespace BreadBuilder.Controllers
             }
             else
             {
-                return RedirectToAction("Add", "User");
+                return RedirectToAction("Login", "User");
             }
         }
 

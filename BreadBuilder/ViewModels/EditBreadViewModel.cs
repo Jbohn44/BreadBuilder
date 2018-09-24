@@ -28,6 +28,14 @@ namespace BreadBuilder.ViewModels
         [Display(Name = "Bake Time in Minutes")]
         public double BakeTime { get; set; }
 
+        [Required]
+        [Display(Name = "Fermentation Time in Minutes")]
+        public double FermentTime { get; set; }
+
+        [Required]
+        [Display(Name = "Proof Time in Minutes")]
+        public double ProofTime { get; set; }
+
 
         public IList<RecipeItem> RecipeItems { get; set; }
 

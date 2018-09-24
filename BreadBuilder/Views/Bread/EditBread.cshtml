@@ -62,9 +62,23 @@
                         <span asp-validation-for="BakeTemp" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="FermentTime" class="control-label"></label>
+                        <input asp-for="FermentTime" class="form-control" value="@Model.FermentTime" />
+                        <span asp-validation-for="FermentTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="ProofTime" class="control-label"></label>
+                        <input asp-for="ProofTime" class="form-control" value="@Model.ProofTime" />
+                        <span asp-validation-for="ProofTime" class="text-danger"></span>
+                    </div>
+                </div>
 
                 <h3><b>Instructions</b></h3>
-                <textarea rows="20" cols="50" asp-for="Instructions">@Model.Instructions</textarea>
+                <textarea rows="10" cols="50" asp-for="Instructions">@Model.Instructions</textarea>
                 @Html.HiddenFor(Model => Model.ID)
 
                 <input type="submit" value="Save" class="btn btn-primary" />

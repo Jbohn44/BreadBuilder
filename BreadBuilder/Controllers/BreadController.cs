@@ -49,6 +49,8 @@ namespace BreadBuilder.Controllers
                     BakeTemp = addBreadViewModel.BakeTemp,
                     BakeTime = addBreadViewModel.BakeTime,
                     UserID = userId,
+                    FermentTime = addBreadViewModel.FermentTime,
+                    ProofTime = addBreadViewModel.ProofTime,
                     RecipeItems = addBreadViewModel.RecipeItems.ToList()
                     
                 };
@@ -89,6 +91,7 @@ namespace BreadBuilder.Controllers
             double flourValue = 0;
             double waterValue = 0;
             
+            //This is used to calculate the recipe's hydration by finding the ingredients that contain certain keywords... needs to be converted to a method and stored in Conversions model
             foreach(var i in items)
             {
                 if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
@@ -126,7 +129,7 @@ namespace BreadBuilder.Controllers
             double flourValue = 0;
             double waterValue = 0;
 
-            //checks to see if name of ingredient is in Lists of keywords...
+            //checks to see if name of ingredient is in Lists of keywords... converts hydration... needs to be a method in Conversion Model
             foreach (var i in items)
             {
                 if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
@@ -228,7 +231,9 @@ namespace BreadBuilder.Controllers
                 RecipeItems = items,
                 Instructions = theBread.Instructions,
                 BakeTime = theBread.BakeTime,
-                BakeTemp = theBread.BakeTemp
+                BakeTemp = theBread.BakeTemp,
+                FermentTime = theBread.FermentTime,
+                ProofTime = theBread.ProofTime
             };
 
             TempData.Keep();
@@ -250,6 +255,8 @@ namespace BreadBuilder.Controllers
                 theBread.Instructions = editBreadViewModel.Instructions;
                 theBread.BakeTemp = editBreadViewModel.BakeTemp;
                 theBread.BakeTime = editBreadViewModel.BakeTime;
+                theBread.FermentTime = editBreadViewModel.FermentTime;
+                theBread.ProofTime = editBreadViewModel.ProofTime;
                 context.Breads.Update(theBread);
                 
                 //updates the recipe item, ingredient, and measurement

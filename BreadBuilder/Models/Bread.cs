@@ -12,6 +12,8 @@ namespace BreadBuilder.Models
         public string Instructions { get; set; }
         public double BakeTime { get; set; }
         public int BakeTemp { get; set; }
+        public double FermentTime { get; set; }
+        public double ProofTime { get; set; }
         public int UserID { get; set; }
 
        

@@ -51,13 +51,27 @@
             <span asp-validation-for="BakeTemp" class="text-danger"></span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="FermentTime" class="control-label"></label>
+            <input asp-for="FermentTime" class="form-control" />
+            <span asp-validation-for="FermentTime" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="ProofTime" class="control-label"></label>
+            <input asp-for="ProofTime" class="form-control" />
+            <span asp-validation-for="ProofTime" class="text-danger"></span>
+        </div>
+    </div>
 
     <div id="wrapper"></div>
     <br />
     <div class="row">
         <div class="col-md-6">
             <label asp-for="Instructions" class="control-label"></label>
-            <textarea rows="20" cols="50" asp-for="Instructions" class="form-control"></textarea>
+            <textarea rows="10" cols="50" asp-for="Instructions" class="form-control"></textarea>
             <span asp-validation-for="Instructions" class="text-danger"></span>
         </div>
     </div>

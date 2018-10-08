@@ -33,3 +33,40 @@
         display: none;
     }
 }
+
+#itemCont {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 110px;
+    
+}
+
+    #itemCont:hover {
+        border-radius: 25px;
+        background: #497312;
+        padding: 20px;
+        width: 200px;
+        height: 150px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 110px;
+    }
+
+.noUnder, .noUnder:hover {
+    text-decoration: none;
+    color: black;
+    
+}
+
+.pOne {
+    border: 2px solid #DDE5D3;
+    padding: 10px;
+    width: 300px;
+    border-radius: 10px;
+}
+

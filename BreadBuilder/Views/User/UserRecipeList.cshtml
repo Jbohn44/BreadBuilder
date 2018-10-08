@@ -12,13 +12,11 @@
      {
 
         
-               <a asp-controller="Bread" asp-action="ViewBread" asp-route-id="@item.ID" class="btn btn-primary btn-block">@item.Name</a>
-            
-            
-               
+               <a class="noUnder" asp-controller="Bread" asp-action="ViewBread" asp-route-id="@item.ID"><p id="itemCont">@item.Name</p></a>
      }
 
-
+<br />
+<br />
 <br />
 <p>
     <a asp-controller="Bread" asp-action="Add" class="btn btn-block btn-warning">Add Bread</a>

@@ -37,7 +37,7 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                int userId = Convert.ToInt32(TempData["UserId"].ToString());
+                int userId = Convert.ToInt32(TempData["UserId"].ToString()); //converts the user id to an integer from tempdata
                 //holds the list of recipe items from viewmodel
                 List<RecipeItem> RecipeItemList = new List<RecipeItem>();
 

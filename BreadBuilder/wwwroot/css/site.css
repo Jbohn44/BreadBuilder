@@ -36,17 +36,16 @@
 
 #itemCont {
     border-radius: 25px;
-    background: #73AD21;
+    background: #ADF252;
     padding: 20px;
     width: 200px;
     height: 150px;
     text-align: center;
     vertical-align: middle;
     line-height: 110px;
-    
 }
 
-    #itemCont:hover {
+#itemCont:hover {
         border-radius: 25px;
         background: #497312;
         padding: 20px;
@@ -55,7 +54,7 @@
         text-align: center;
         vertical-align: middle;
         line-height: 110px;
-    }
+}
 
 .noUnder, .noUnder:hover {
     text-decoration: none;
@@ -70,3 +69,24 @@
     border-radius: 10px;
 }
 
+#addBread {
+    border-radius: 25px;
+    background: #FFC469;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 110px;
+}
+
+    #addBread:hover {
+        border-radius: 25px;
+        background: #FF9C06;
+        padding: 20px;
+        width: 200px;
+        height: 150px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 110px;
+    }

@@ -38,6 +38,7 @@ namespace BreadBuilder.Controllers
             if (ModelState.IsValid)
             {
                 int userId = Convert.ToInt32(TempData["UserId"].ToString()); //converts the user id to an integer from tempdata
+
                 //holds the list of recipe items from viewmodel
                 List<RecipeItem> RecipeItemList = new List<RecipeItem>();
 
@@ -96,7 +97,7 @@ namespace BreadBuilder.Controllers
             {
                 if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    flourValue = i.RecipeMeasurement.Value;
+                    flourValue += i.RecipeMeasurement.Value;
                 }
                 if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {

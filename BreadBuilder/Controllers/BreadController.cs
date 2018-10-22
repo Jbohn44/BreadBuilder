@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Session;
 
+/*
+ * TODO: refactor code so that the whole conversion process for bread hydration level takes place 
+ *       in the Conversions class.  Currently, it is used in several handlers--ViewBread, ConvertToGrams ect...
+ */
 namespace BreadBuilder.Controllers
 {
     public class BreadController : Controller
@@ -101,7 +105,7 @@ namespace BreadBuilder.Controllers
                 }
                 if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    waterValue = i.RecipeMeasurement.Value;
+                    waterValue += i.RecipeMeasurement.Value;
                 }
             }
             
@@ -135,11 +139,11 @@ namespace BreadBuilder.Controllers
             {
                 if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    flourValue = i.RecipeMeasurement.Value;
+                    flourValue += i.RecipeMeasurement.Value;
                 }
                 if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    waterValue = i.RecipeMeasurement.Value;
+                    waterValue += i.RecipeMeasurement.Value;
                 }
             }
 
@@ -184,11 +188,11 @@ namespace BreadBuilder.Controllers
             {
                 if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    flourValue = i.RecipeMeasurement.Value;
+                    flourValue += i.RecipeMeasurement.Value;
                 }
                 if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
                 {
-                    waterValue = i.RecipeMeasurement.Value;
+                    waterValue += i.RecipeMeasurement.Value;
                 }
             }
 

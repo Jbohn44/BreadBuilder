@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BreadBuilder.Models
 {
-    public class Conversions
+    public static class Conversions
     {
         public static double HydrationLevel(double fWeight, double wWeight)
         {

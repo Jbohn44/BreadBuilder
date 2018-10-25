@@ -90,9 +90,13 @@ namespace BreadBuilder.Controllers
 
        public IActionResult ViewBread(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
-            Bread theBread = context.Breads.Single(b => b.ID == id);
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
 
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+            /*
             double flourValue = 0;
             double waterValue = 0;
             
@@ -107,9 +111,9 @@ namespace BreadBuilder.Controllers
                 {
                     waterValue += i.RecipeMeasurement.Value;
                 }
-            }
+            }*/
             
-            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+            double hydration = Conversions.HydrationLevel(items);
 
             List<double> totalWeights = Conversions.TotalWeights(items);
 
@@ -128,26 +132,14 @@ namespace BreadBuilder.Controllers
 
         public IActionResult ConvertToGrams(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
-            double flourValue = 0;
-            double waterValue = 0;
-
-            //checks to see if name of ingredient is in Lists of keywords... converts hydration... needs to be a method in Conversion Model
-            foreach (var i in items)
-            {
-                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    flourValue += i.RecipeMeasurement.Value;
-                }
-                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    waterValue += i.RecipeMeasurement.Value;
-                }
-            }
-
-            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+            double hydration = Conversions.HydrationLevel(items);
 
             
 
@@ -177,28 +169,14 @@ namespace BreadBuilder.Controllers
 
         public IActionResult ConvertToOunces(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
-            double flourValue = 0;
-            double waterValue = 0;
-
-            //checks to see if name of ingredient is contained in lists of keywords
-            foreach (var i in items)
-            {
-                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    flourValue += i.RecipeMeasurement.Value;
-                }
-                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    waterValue += i.RecipeMeasurement.Value;
-                }
-            }
-
-            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
-
-            
+            double hydration = Conversions.HydrationLevel(items);
 
             foreach (var i in items)
             {
@@ -226,7 +204,11 @@ namespace BreadBuilder.Controllers
 
         public IActionResult EditBread(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
             EditBreadViewModel viewModel = new EditBreadViewModel
@@ -297,7 +279,11 @@ namespace BreadBuilder.Controllers
 
         public IActionResult Delete(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == id).ToList();
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
             Bread theBread = context.Breads.Single(b => b.ID == id);
 
             foreach(var item in items)

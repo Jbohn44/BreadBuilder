@@ -57,22 +57,7 @@ namespace BreadBuilder.Controllers
 
                     double dewPoint = Conversions.DewPoint(rawWeather.Main.Temp, rawWeather.Main.Humidity);
 
-                    double flourValue = 0;
-                    double waterValue = 0;
-
-                    foreach (var i in items)
-                    {
-                        if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
-                        {
-                            flourValue = i.RecipeMeasurement.Value;
-                        }
-                        if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
-                        {
-                            waterValue = i.RecipeMeasurement.Value;
-                        }
-                    }
-
-                    double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+                    double hydration = Conversions.HydrationLevel(items);
 
                     List<double> totalWeights = Conversions.TotalWeights(items);
 

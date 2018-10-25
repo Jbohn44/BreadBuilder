@@ -8,9 +8,24 @@ namespace BreadBuilder.Models
 {
     public static class Conversions
     {
-        public static double HydrationLevel(double fWeight, double wWeight)
+        public static double HydrationLevel(List<RecipeItem> items)
         {
-            double percentage = ((wWeight / fWeight) * 100);
+            double flourValue = 0;
+            double waterValue = 0;
+
+            //This is used to calculate the recipe's hydration by finding the ingredients that contain certain keywords... needs to be converted to a method and stored in Conversions model
+            foreach (var i in items)
+            {
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
+                {
+                    flourValue += i.RecipeMeasurement.Value;
+                }
+                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
+                {
+                    waterValue += i.RecipeMeasurement.Value;
+                }
+            }
+            double percentage = ((waterValue / flourValue) * 100);
 
             return Math.Round(percentage);
         }
@@ -243,22 +258,8 @@ namespace BreadBuilder.Models
             }
 
 
-            double flourValue = 0;
-            double waterValue = 0;
 
-            foreach (var i in items)
-            {
-                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    flourValue = i.RecipeMeasurement.Value;
-                }
-                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    waterValue = i.RecipeMeasurement.Value;
-                }
-            }
-
-            double hydration = Conversions.HydrationLevel(flourValue, waterValue);
+            double hydration = Conversions.HydrationLevel(items);
 
             List<double> totalWeights = Conversions.TotalWeights(items);
 

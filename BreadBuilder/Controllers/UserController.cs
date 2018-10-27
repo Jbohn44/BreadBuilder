@@ -41,7 +41,7 @@ namespace BreadBuilder.Controllers
             if (ModelState.IsValid)
             {
                 IList<User> existingUsers = context.Users.ToList();
-                IList<String> existingUserNames = new List<String>();
+                IList<string> existingUserNames = new List<string>();
 
 
                 //loop through existing users and adds name to list...

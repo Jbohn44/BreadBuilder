@@ -96,22 +96,6 @@ namespace BreadBuilder.Controllers
                 .ToList();
 
             Bread theBread = context.Breads.Single(b => b.ID == id);
-            /*
-            double flourValue = 0;
-            double waterValue = 0;
-            
-            //This is used to calculate the recipe's hydration by finding the ingredients that contain certain keywords... needs to be converted to a method and stored in Conversions model
-            foreach(var i in items)
-            {
-                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    flourValue += i.RecipeMeasurement.Value;
-                }
-                if (KeyWordLists.Liquids.Contains(i.RecipeIngredient.Name.ToLower()))
-                {
-                    waterValue += i.RecipeMeasurement.Value;
-                }
-            }*/
             
             double hydration = Conversions.HydrationLevel(items);
 

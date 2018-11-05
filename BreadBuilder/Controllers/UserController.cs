@@ -40,15 +40,9 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                IList<User> existingUsers = context.Users.ToList();
-                IList<string> existingUserNames = new List<string>();
+                List<User> existingUsers = context.Users.ToList();
+                List<string> existingUserNames = Conversions.ExistingUsers(existingUsers);
 
-
-                //loop through existing users and adds name to list...
-                foreach(var user in existingUsers)
-                {
-                    existingUserNames.Add(user.Name);
-                }
                 if (existingUserNames.Contains(addUserViewModel.Username))
                 {
                     ModelState.AddModelError("Username", "Username already exists");
@@ -93,6 +87,7 @@ namespace BreadBuilder.Controllers
             {
 
                 User user = context.Users.Single(u => u.Name == loginViewModel.Username);
+
                 if (user.Password == loginViewModel.Password)
                 {
 

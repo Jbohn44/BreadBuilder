@@ -58,7 +58,45 @@ namespace BreadBuilder.Models
             return totals;
         }
 
+        public static List<string> ExistingUsers(List<User> users)
+        {
+            List<string> existingUsers = new List<string>();
+            foreach (var user in users)
+            {
+                existingUsers.Add(user.Name);
+            }
 
+            return existingUsers;
+        }
+
+        public static List<RecipeItem> ConvertItemsToGrams(List<RecipeItem> items)
+        {
+            foreach (var i in items)
+            {
+                if (i.RecipeMeasurement.Unit == MeasurementUnit.oz)
+                {
+                    i.RecipeMeasurement.Unit = MeasurementUnit.g;
+                    i.RecipeMeasurement.Value = Conversions.OuncesToGrams(i.RecipeMeasurement.Value);
+                }
+            }
+
+            return items;
+        }
+
+        public static List<RecipeItem> ConvertItemsToOz(List<RecipeItem> items)
+        {
+            foreach (var i in items)
+            {
+                if (i.RecipeMeasurement.Unit == MeasurementUnit.g)
+                {
+                    i.RecipeMeasurement.Unit = MeasurementUnit.oz;
+                    i.RecipeMeasurement.Value = Conversions.GramsToOunces(i.RecipeMeasurement.Value);
+                }
+            }
+
+            return items;
+        }
+                
         public static double OuncesToLbs(double ounces)
         {
             double lbs = (ounces / 16);

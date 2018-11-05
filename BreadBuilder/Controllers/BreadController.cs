@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Session;
 /*
  * TODO: refactor code so that the whole conversion process for bread hydration level takes place 
  *       in the Conversions class.  Currently, it is used in several handlers--ViewBread, ConvertToGrams ect...
+ *   
+ * TODO: refactor code so that method calls replace the code inside of controllers... for the most part...
  */
 namespace BreadBuilder.Controllers
 {
@@ -27,10 +29,7 @@ namespace BreadBuilder.Controllers
     
 
         public IActionResult Add()
-        {
-            
-            
-            
+        {      
             AddBreadViewModel addBreadViewModel = new AddBreadViewModel();
             
             return View(addBreadViewModel);
@@ -61,6 +60,7 @@ namespace BreadBuilder.Controllers
                 };
 
                 context.Breads.Add(newBread);
+
                 context.SaveChanges();
 
                 //loops through each recipe item in viewmodel and instantiates a new RecipeItem--Also adds said RecipeItem to a List
@@ -125,17 +125,8 @@ namespace BreadBuilder.Controllers
 
             double hydration = Conversions.HydrationLevel(items);
 
-            
-
-            foreach(var i in items)
-            {
-                if(i.RecipeMeasurement.Unit == MeasurementUnit.oz)
-                {
-                    i.RecipeMeasurement.Unit = MeasurementUnit.g;
-                    i.RecipeMeasurement.Value = Conversions.OuncesToGrams(i.RecipeMeasurement.Value);
-                }
-            }
-
+            items = Conversions.ConvertItemsToGrams(items);
+           
             List<double> totalWeights = Conversions.TotalWeights(items);
 
             ViewBreadViewModel viewModel = new ViewBreadViewModel
@@ -162,14 +153,7 @@ namespace BreadBuilder.Controllers
 
             double hydration = Conversions.HydrationLevel(items);
 
-            foreach (var i in items)
-            {
-                if (i.RecipeMeasurement.Unit == MeasurementUnit.g)
-                {
-                    i.RecipeMeasurement.Unit = MeasurementUnit.oz;
-                    i.RecipeMeasurement.Value = Conversions.GramsToOunces(i.RecipeMeasurement.Value);
-                }
-            }
+            items = Conversions.ConvertItemsToOz(items);
 
             List<double> totalWeights = Conversions.TotalWeights(items);
 

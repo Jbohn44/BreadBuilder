@@ -7,7 +7,7 @@ namespace BreadBuilder.Models
 {
     public class WeatherDescription
     {
-        public string Main { get; set; }
+        public string WeatherMain { get; set; }
         public string Description { get; set; }
     }
 }

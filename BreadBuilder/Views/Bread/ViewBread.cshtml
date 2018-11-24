@@ -6,6 +6,9 @@
 
 <h2>@Model.Bread.Name</h2>
 <hr />
+<div>
+    @Html.ActionLink("Weather Condition Adjustment", "Index", "Weather", new { id = Model.Bread.ID }, new { @class = "btn btn-lg btn-success" })
+</div>
 <br/>
 <h5>Hydration: @Model.Hydration %</h5>
 <hr />
@@ -66,17 +69,14 @@
     <h3><b>Fermentation Time</b></h3>
     <p>@Model.Bread.FermentTime minutes</p>
 </div>
+<hr />
 <div>
     <h3><b>Proof Time</b></h3>
     <p>@Model.Bread.ProofTime minutes</p>
 </div>
+<hr />
 <h3><b>Instructions</b></h3>
 <p>@Model.Bread.Instructions</p>
-<br />
-<br />
-<div>
-    @Html.ActionLink("Weather Condition Adjustment", "Index", "Weather", new { id = Model.Bread.ID }, new {@class="btn btn-lg btn-success" })
-</div>
 <br />
 <br />
 <div>

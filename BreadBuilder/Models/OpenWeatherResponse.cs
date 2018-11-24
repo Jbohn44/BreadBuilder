@@ -9,7 +9,7 @@ namespace BreadBuilder.Models
     {
         public string Name { get; set; }
         public IEnumerable<WeatherDescription> Weather { get; set; }
-        public Main Main { get; set; }
+        public WeatherMain Main { get; set; }
        
     }
 }

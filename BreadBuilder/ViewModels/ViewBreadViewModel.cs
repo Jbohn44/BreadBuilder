@@ -9,6 +9,7 @@ namespace BreadBuilder.ViewModels
     public class ViewBreadViewModel
     {
         public Bread Bread { get; set; }
+
         public IList<RecipeItem> Items { get; set; }
 
         public double Hydration { get; set; }

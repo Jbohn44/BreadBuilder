@@ -11,7 +11,7 @@
 @*TODO: ADD Client side validation*@
 <hr />
 <div>
-    <p>Click the button to add the amount of ingredients that you need</p>
+    <p>Add and Subtract Ingredients</p>
 </div>
 <br />
 <div class="row">
@@ -27,6 +27,8 @@
 
 <form asp-action="Add" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div id="wrapper"></div>
+    <br/>
     <div class="row">
         <div class="col-md-4">
             <label asp-for="Name" class="control-label"></label>
@@ -66,7 +68,7 @@
         </div>
     </div>
 
-    <div id="wrapper"></div>
+
     <br />
     <div class="row">
         <div class="col-md-6">

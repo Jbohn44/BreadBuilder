@@ -76,6 +76,7 @@ namespace BreadBuilder.Controllers
                     };
 
                     WeatherViewModel viewModel = Conversions.WeatherAdjustment(weatherViewModel);
+
                     TempData.Keep();
 
                     return View("ViewWeather", viewModel);

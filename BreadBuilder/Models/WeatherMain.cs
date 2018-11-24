@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BreadBuilder.Models
 {
-    public class Main
+    public class WeatherMain
     {
         public string Temp { get; set; }
         public string Humidity { get; set; }

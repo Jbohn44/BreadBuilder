@@ -27,6 +27,13 @@ namespace BreadBuilder.Models
             }
             double percentage = ((waterValue / flourValue) * 100);
 
+            if (double.IsNaN(percentage))
+            {
+                percentage = 0.0;
+
+                return percentage;
+            }
+
             return Math.Round(percentage);
         }
 

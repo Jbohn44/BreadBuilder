@@ -39,6 +39,8 @@ namespace BreadBuilder.ViewModels
 
         public IList<RecipeItem> RecipeItems { get; set; }
 
+        public bool isChecked = false;
+
         public List<SelectListItem> MeasurementUnits { get; set; }
 
         public EditBreadViewModel()

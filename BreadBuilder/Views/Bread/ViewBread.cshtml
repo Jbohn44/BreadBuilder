@@ -13,10 +13,13 @@
 <h5>Hydration: @Model.Hydration %</h5>
 <hr />
 
-<h3>Convert Your Recipe</h3>
-<div>
-    @Html.ActionLink("Grams", "ConvertToGrams", new { id = Model.Bread.ID }, new { @class="btn btn-primary" })
-    @Html.ActionLink("Ounces", "ConvertToOunces", new { id = Model.Bread.ID}, new { @class="btn btn-primary" })
+
+<div class="row">
+    <div class="col-lg-offset-5">
+        <h3>Convert Your Recipe</h3>
+        @Html.ActionLink("Grams", "ConvertToGrams", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ounces", "ConvertToOunces", new { id = Model.Bread.ID }, new { @class = "btn btn-primary" })
+    </div>
 </div>
 <h3><b>Ingredients</b></h3>
 <hr />

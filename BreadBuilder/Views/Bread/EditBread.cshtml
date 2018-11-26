@@ -1,7 +1,7 @@
 ﻿@model BreadBuilder.ViewModels.EditBreadViewModel
 
 @{
-    ViewData["Title"] = "EditBread";
+    ViewData["Title"] = "Edit Bread";
 }
 
 <h2>Bread Edit</h2>
@@ -25,6 +25,7 @@
                         <th>Name</th>
                         <th>Value</th>
                         <th>Unit</th>
+                        <th>Delete</th>
                     </tr>
 
                     @for (var i = 0; i < Model.RecipeItems.Count; i++)
@@ -38,6 +39,8 @@
                             <td><input value="@Model.RecipeItems[i].RecipeMeasurement.Value" asp-for="RecipeItems[i].RecipeMeasurement.Value" /></td>
 
                             <td><select asp-for="@Model.RecipeItems[i].RecipeMeasurement.Unit" asp-items="@Model.MeasurementUnits"></select></td>
+
+                            <td><input type="checkbox" for="@Model.isChecked" id="@Model.RecipeItems[i].ID" /></td>
 
 
                         </tr>

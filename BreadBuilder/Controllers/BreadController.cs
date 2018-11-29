@@ -202,16 +202,27 @@ namespace BreadBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+              
+
                 //holds the list of recipe items from viewmodel
                 List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient).Include(y => y.RecipeMeasurement).Where(x => x.Bread.ID == editBreadViewModel.ID).ToList();
+
                 Bread theBread = context.Breads.Single(b => b.ID == editBreadViewModel.ID);
+
                 List<RecipeItem> recipeItems = editBreadViewModel.RecipeItems.ToList();
+
                 theBread.Name = editBreadViewModel.Name;
+
                 theBread.Instructions = editBreadViewModel.Instructions;
+
                 theBread.BakeTemp = editBreadViewModel.BakeTemp;
+
                 theBread.BakeTime = editBreadViewModel.BakeTime;
+
                 theBread.FermentTime = editBreadViewModel.FermentTime;
+
                 theBread.ProofTime = editBreadViewModel.ProofTime;
+
                 context.Breads.Update(theBread);
                 
                 //updates the recipe item, ingredient, and measurement

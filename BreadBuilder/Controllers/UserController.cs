@@ -51,11 +51,11 @@ namespace BreadBuilder.Controllers
                 else
                 {
 
-
+                    var hash = HashPass.Hash(addUserViewModel.Password);
                     User newUser = new User
                     {
                         Name = addUserViewModel.Username,
-                        Password = addUserViewModel.Password
+                        Password = hash
                     };
 
                     context.Users.Add(newUser);
@@ -88,7 +88,11 @@ namespace BreadBuilder.Controllers
 
                 User user = context.Users.Single(u => u.Name == loginViewModel.Username);
 
-                if (user.Password == loginViewModel.Password)
+                var hash = user.Password;
+
+                var result = HashPass.Verify(loginViewModel.Password, hash);
+
+                if (result)
                 {
 
                     TempData["UserId"] = user.ID;

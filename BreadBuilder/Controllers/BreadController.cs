@@ -41,49 +41,13 @@ namespace BreadBuilder.Controllers
             if (ModelState.IsValid)
             {
 
-                /*
-                //holds the list of recipe items from viewmodel
-                List<RecipeItem> RecipeItemList = new List<RecipeItem>();
-
-                //instantiates and saves a new bread recipe
-                Bread newBread = new Bread
-                {
-                    Name = addBreadViewModel.Name,
-                    Instructions = addBreadViewModel.Instructions,
-                    BakeTemp = addBreadViewModel.BakeTemp,
-                    BakeTime = addBreadViewModel.BakeTime,
-                    UserID = userId,
-                    FermentTime = addBreadViewModel.FermentTime,
-                    ProofTime = addBreadViewModel.ProofTime,
-                    RecipeItems = addBreadViewModel.RecipeItems.ToList()
-                    
-                };
-
-                context.Breads.Add(newBread);
-
-                context.SaveChanges();
-
-                //loops through each recipe item in viewmodel and instantiates a new RecipeItem--Also adds said RecipeItem to a List
-                foreach (var item in addBreadViewModel.RecipeItems)
-                {
-                    RecipeItem newRecipeItem = new RecipeItem
-                    {
-                        RecipeIngredient = item.RecipeIngredient,
-                        RecipeMeasurement = item.RecipeMeasurement,
-                        Bread = newBread
-                    };
-                    context.RecipeItems.Add(newRecipeItem);
-                    context.SaveChanges();
-                    RecipeItemList.Add(newRecipeItem);
-                }
-                */
-
                 //converts the user id to an integer from tempdata
                 int userId = Convert.ToInt32(TempData["UserId"].ToString());
 
                 Bread newBread = DataBaseAccess.AddToDataBase(addBreadViewModel, userId, context);
 
                 TempData["UserId"] = userId;
+
                 TempData.Keep();
 
                 return RedirectToAction($"/ViewBread/{newBread.ID}");
@@ -95,25 +59,8 @@ namespace BreadBuilder.Controllers
 
        public IActionResult ViewBread(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
-                .Include(y => y.RecipeMeasurement)
-                .Where(x => x.Bread.ID == id)
-                .ToList();
-
-            Bread theBread = context.Breads.Single(b => b.ID == id);
             
-            double hydration = Conversions.HydrationLevel(items);
-
-            List<double> totalWeights = Conversions.TotalWeights(items);
-
-            ViewBreadViewModel viewModel = new ViewBreadViewModel
-            {
-                Bread = theBread,
-                Items = items,
-                Hydration = hydration,
-                TotalWeights = totalWeights
-            };
-
+            ViewBreadViewModel viewModel = DataBaseAccess.ViewBread(id, context);
             TempData.Keep();
             
             return View(viewModel);

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BreadBuilder.Data;
 using BreadBuilder.Models;
 using BreadBuilder.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace BreadBuilder.Models
 {
@@ -49,6 +50,30 @@ namespace BreadBuilder.Models
             }
 
             return newBread;
+        }
+
+        public static ViewBreadViewModel ViewBread(int id, BreadDbContext context)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                            .Include(y => y.RecipeMeasurement)
+                            .Where(x => x.Bread.ID == id)
+                            .ToList();
+
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            double hydration = Conversions.HydrationLevel(items);
+
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items,
+                Hydration = hydration,
+                TotalWeights = totalWeights
+            };
+
+            return viewModel;
         }
     }
 }

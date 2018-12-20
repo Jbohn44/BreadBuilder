@@ -42,6 +42,7 @@ namespace BreadBuilder.Controllers
             {
 
                 //converts the user id to an integer from tempdata
+                //the user id is boxed in TempData when the user logs in
                 int userId = Convert.ToInt32(TempData["UserId"].ToString());
 
                 Bread newBread = DataBaseAccess.AddToDataBase(addBreadViewModel, userId, context);

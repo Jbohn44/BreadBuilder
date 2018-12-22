@@ -75,5 +75,83 @@ namespace BreadBuilder.Models
 
             return viewModel;
         }
+
+        public static ViewBreadViewModel ConvertToGramsViewModel(int id, BreadDbContext context)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            double hydration = Conversions.HydrationLevel(items);
+
+            items = Conversions.ConvertItemsToGrams(items);
+
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items,
+                Hydration = hydration,
+                TotalWeights = totalWeights
+            };
+
+            return viewModel;
+
+        }
+
+        public static ViewBreadViewModel ConvertToOuncesViewModel(int id, BreadDbContext context)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            double hydration = Conversions.HydrationLevel(items);
+
+            items = Conversions.ConvertItemsToOz(items);
+
+            List<double> totalWeights = Conversions.TotalWeights(items);
+
+            ViewBreadViewModel viewModel = new ViewBreadViewModel
+            {
+                Bread = theBread,
+                Items = items,
+                Hydration = hydration,
+                TotalWeights = totalWeights
+            };
+
+            return viewModel;
+
+        }
+
+        public static EditBreadViewModel EditBreadView(int id, BreadDbContext context)
+        {
+            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
+                .Include(y => y.RecipeMeasurement)
+                .Where(x => x.Bread.ID == id)
+                .ToList();
+
+            Bread theBread = context.Breads.Single(b => b.ID == id);
+
+            EditBreadViewModel viewModel = new EditBreadViewModel
+            {
+                ID = theBread.ID,
+                Name = theBread.Name,
+                RecipeItems = items,
+                Instructions = theBread.Instructions,
+                BakeTime = theBread.BakeTime,
+                BakeTemp = theBread.BakeTemp,
+                FermentTime = theBread.FermentTime,
+                ProofTime = theBread.ProofTime
+            };
+
+            return viewModel;
+        }
     }
 }

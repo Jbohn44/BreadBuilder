@@ -67,82 +67,32 @@ namespace BreadBuilder.Controllers
             return View(viewModel);
         }
 
+        //Controller converts all values of recipe items to grams...  Nothing is saved, everything is just converted for the view...
         public IActionResult ConvertToGrams(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
-                .Include(y => y.RecipeMeasurement)
-                .Where(x => x.Bread.ID == id)
-                .ToList();
 
-            Bread theBread = context.Breads.Single(b => b.ID == id);
-
-            double hydration = Conversions.HydrationLevel(items);
-
-            items = Conversions.ConvertItemsToGrams(items);
-           
-            List<double> totalWeights = Conversions.TotalWeights(items);
-
-            ViewBreadViewModel viewModel = new ViewBreadViewModel
-            {
-                Bread = theBread,
-                Items = items,
-                Hydration = hydration,
-                TotalWeights = totalWeights
-            };
+            ViewBreadViewModel viewModel = DataBaseAccess.ConvertToGramsViewModel(id, context);
 
             TempData.Keep();
 
             return View("ViewBread", viewModel);
         }
 
+        //Controller converts all values of recipe items to ounces...  Nothing is saved, everything is just converted for the view...
         public IActionResult ConvertToOunces(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
-                .Include(y => y.RecipeMeasurement)
-                .Where(x => x.Bread.ID == id)
-                .ToList();
-
-            Bread theBread = context.Breads.Single(b => b.ID == id);
-
-            double hydration = Conversions.HydrationLevel(items);
-
-            items = Conversions.ConvertItemsToOz(items);
-
-            List<double> totalWeights = Conversions.TotalWeights(items);
-
-            ViewBreadViewModel viewModel = new ViewBreadViewModel
-            {
-                Bread = theBread,
-                Items = items,
-                Hydration = hydration,
-                TotalWeights = totalWeights
-            };
+            ViewBreadViewModel viewModel = DataBaseAccess.ConvertToOuncesViewModel(id, context);
 
             TempData.Keep();
 
             return View("ViewBread", viewModel);
         }
 
+        //Controller for the initial view of the EditBread view...
         public IActionResult EditBread(int id)
         {
-            List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
-                .Include(y => y.RecipeMeasurement)
-                .Where(x => x.Bread.ID == id)
-                .ToList();
 
-            Bread theBread = context.Breads.Single(b => b.ID == id);
-
-            EditBreadViewModel viewModel = new EditBreadViewModel
-            {
-                ID = theBread.ID,
-                Name = theBread.Name,
-                RecipeItems = items,
-                Instructions = theBread.Instructions,
-                BakeTime = theBread.BakeTime,
-                BakeTemp = theBread.BakeTemp,
-                FermentTime = theBread.FermentTime,
-                ProofTime = theBread.ProofTime
-            };
+            EditBreadViewModel viewModel = DataBaseAccess.EditBreadView(id, context);
 
             TempData.Keep();
 

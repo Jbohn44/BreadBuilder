@@ -15,5 +15,7 @@ namespace BreadBuilder.ViewModels
         public double Hydration { get; set; }
 
         public IList<double> TotalWeights { get; set; }
+
+        public IList<double> IngredientPercentages { get; set; }
     }
 }

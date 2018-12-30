@@ -65,12 +65,15 @@ namespace BreadBuilder.Models
 
             List<double> totalWeights = Conversions.TotalWeights(items);
 
+            List<double> ingredientPercentages = Conversions.IngredientPercentages(items);
+
             ViewBreadViewModel viewModel = new ViewBreadViewModel
             {
                 Bread = theBread,
                 Items = items,
                 Hydration = hydration,
-                TotalWeights = totalWeights
+                TotalWeights = totalWeights,
+                IngredientPercentages = ingredientPercentages
             };
 
             return viewModel;

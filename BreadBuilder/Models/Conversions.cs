@@ -103,6 +103,36 @@ namespace BreadBuilder.Models
 
             return items;
         }
+
+        public static List<double> IngredientPercentages(List<RecipeItem> items)
+        {
+            List<double> ingredientPercentages = new List<double>();
+
+            List<RecipeItem> flourList = new List<RecipeItem>();
+
+            double totalFlourWeight = 0;
+
+            foreach(var i in items)
+            {
+                if (KeyWordLists.Flours.Contains(i.RecipeIngredient.Name.ToLower()))
+                {
+                    flourList.Add(i);
+                }
+
+            }
+
+            foreach(var i in flourList)
+            {
+                totalFlourWeight += i.RecipeMeasurement.Value;
+            }
+
+            foreach(var i in items)
+            {
+                ingredientPercentages.Add(i.RecipeMeasurement.Value / totalFlourWeight);
+            }
+
+            return ingredientPercentages;
+        } 
                 
         public static double OuncesToLbs(double ounces)
         {

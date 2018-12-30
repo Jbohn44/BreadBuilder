@@ -28,6 +28,7 @@
         <th>Name</th>
         <th>Value</th>
         <th>Unit</th>
+        <th>%</th>
     </tr>
   @foreach(var item in Model.Items)
    {
@@ -40,6 +41,8 @@
                   <td>@item.RecipeMeasurement.Value</td>
 
                   <td>@item.RecipeMeasurement.Unit</td>
+
+                  
               
           
      </tr>
@@ -47,6 +50,12 @@
    }
     
 </table>
+
+<h4>TEST DATA PERCENTAGES</h4>
+@for(var i = 0; i < Model.IngredientPercentages.Count; i++)
+{
+    <p>@Model.IngredientPercentages[i]</p>
+}
 <hr />
 
 <h5>Totals:</h5> 

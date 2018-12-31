@@ -128,7 +128,7 @@ namespace BreadBuilder.Models
 
             foreach(var i in items)
             {
-                ingredientPercentages.Add(i.RecipeMeasurement.Value / totalFlourWeight);
+                ingredientPercentages.Add(Math.Truncate(((i.RecipeMeasurement.Value / totalFlourWeight) * 10000)) / 100);
             }
 
             return ingredientPercentages;

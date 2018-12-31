@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BreadBuilder.Models
 {
+    //Static class that holds methods to access and process database entry
     public static class DataBaseAccess
     {
-
+        //method to add an item to database
         public static Bread AddToDataBase(AddBreadViewModel addBreadViewModel, int userId, BreadDbContext context)
         {
             //holds the list of recipe items from viewmodel
@@ -52,6 +53,7 @@ namespace BreadBuilder.Models
             return newBread;
         }
 
+        //method to pull contents from database and view them
         public static ViewBreadViewModel ViewBread(int id, BreadDbContext context)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
@@ -79,6 +81,7 @@ namespace BreadBuilder.Models
             return viewModel;
         }
 
+        //method to put contents through a conversion to grams method
         public static ViewBreadViewModel ConvertToGramsViewModel(int id, BreadDbContext context)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
@@ -106,6 +109,7 @@ namespace BreadBuilder.Models
 
         }
 
+        //method to put contents through a conversion to ounces method
         public static ViewBreadViewModel ConvertToOuncesViewModel(int id, BreadDbContext context)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)
@@ -133,6 +137,7 @@ namespace BreadBuilder.Models
 
         }
 
+        //method processes the edit of contents
         public static EditBreadViewModel EditBreadView(int id, BreadDbContext context)
         {
             List<RecipeItem> items = context.RecipeItems.Include(i => i.RecipeIngredient)

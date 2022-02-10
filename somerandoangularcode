@@ -1,0 +1,80 @@
+import { Component, VERSION } from '@angular/core';
+import { Inject }  from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
+})
+export class AppComponent  {
+  numbers = [];
+  numberOfDivs = 0;
+ 
+  constructor(@Inject(DOCUMENT) document){
+
+  }
+  
+  addNumbers(){
+    console.log(this.numberOfDivs)
+    this.numbers = this.shuffle(Array(this.numberOfDivs).fill(i=>i).map((x,i)=>i));
+    console.log(event)
+  }
+  remove(div){
+    const divById = document.getElementById(div.toString());
+    divById.style.backgroundColor = '#009933';
+    divById.innerHTML = div;
+    this.checkDiv(div);
+  }
+
+  doRemoval(num){
+    this.numbers = this.numbers.filter(x => x !== num)
+
+  }
+
+  checkDiv(div){
+    if(div !== 15) {
+      const divById = document.getElementById(div.toString());
+      divById.style.backgroundColor = '#e60000';
+      divById.style.position = 'absolute';
+      divById.style.top = '0';
+      divById.style.right = '0';
+      divById.innerHTML = div;
+      divById.style.zIndex = '9999';
+    }
+  }
+
+  clear(){
+    this.numbers = [];
+    // this.numbers = Array(50).fill(i=>i).map((x,i)=>i); 
+    this.numbers.forEach(x =>{
+      let divById = document.getElementById(x.toString());
+      divById.style.backgroundColor = null;
+      divById.innerHTML = null;
+      divById.style.top = null;
+      divById.style.right = null;
+      divById.style.zIndex = null;
+      divById.style.position = null;
+
+    });
+  }
+
+  shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+    console.log(randomIndex)
+    console.log(typeof(currentIndex));
+    console.log(currentIndex)
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+}
